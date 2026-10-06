@@ -1,0 +1,44 @@
+.btn, .btn-primary, .btn-secondary, .btn-white, .btn-light {
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+  background: #1B5FA0 !important;
+  color: #fff !important;
+  border: none !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.4s ease !important;
+}
+.btn::after, .btn-primary::after, .btn-secondary::after, .btn-white::after, .btn-light::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  height: 100%;
+  background: linear-gradient(0deg, #FCE0EA 0%, #F4B8CC 50%, #E898B0 100%);
+  clip-path: polygon(0% 0%,0% 100%,8% 94%,18% 100%,28% 90%,38% 98%,48% 92%,58% 100%,68% 88%,78% 96%,88% 91%,100% 100%,100% 0%);
+  transition: transform 0.55s cubic-bezier(0.25,0.05,0.12,0.97);
+  transform: translateY(100%);
+}
+.btn:hover::after, .btn-primary:hover::after, .btn-secondary:hover::after, .btn-white:hover::after, .btn-light:hover::after {
+  transform: translateY(0) !important;
+}
+.btn::before, .btn-primary::before, .btn-secondary::before, .btn-white::before, .btn-light::before {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  height: 100%;
+  background: linear-gradient(0deg, #F0C0D4 0%, #E090A8 50%, #D07090 100%);
+  clip-path: polygon(0% 0%,0% 100%,12% 92%,22% 100%,35% 88%,45% 97%,55% 93%,65% 100%,75% 87%,85% 98%,95% 90%,100% 100%,100% 0%);
+  transition: transform 0.7s cubic-bezier(0.25,0.05,0.12,0.97);
+  transform: translateY(100%);
+}
+.btn:hover::before, .btn-primary:hover::before, .btn-secondary:hover::before, .btn-white:hover::before, .btn-light:hover::before {
+  transform: translateY(0) !important;
+}
+.btn:hover, .btn-primary:hover, .btn-secondary:hover, .btn-white:hover, .btn-light:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(220,140,160,0.35) !important;
+  color: #0B2E59 !important;
+}
+.btn span, .btn-primary span, .btn-secondary span, .btn-white span, .btn-light span {
+  position: relative !important;
+  z-index: 2 !important;
+}

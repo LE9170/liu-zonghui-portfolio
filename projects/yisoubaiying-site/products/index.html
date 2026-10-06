@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AI营销服务 - 一搜百应</title>
+    <meta name="description" content="了解AI营销如何提升品牌在AI搜索中的能见度，从检测到优化一站式提升销售与广告投放效率。" />
+    <meta name="keywords" content="AI营销服务,GEO优化,生成式搜索,AI检测报告,Schema结构化标记,品牌能见度" />
+    <link rel="canonical" href="https://www.yisoubaiying.com/products/index.html" />
+    <link rel="stylesheet" href="../assets/css/style.css?v=4" />
+    <style>
+      .btn,.btn-primary,.btn-secondary,.btn-white,.btn-light{position:relative;overflow:hidden;z-index:1;background:#1B5FA0;color:#fff;border:none;transition:transform 0.3s ease,box-shadow 0.3s ease,color 0.4s ease}
+      .btn::after,.btn-primary::after,.btn-secondary::after,.btn-white::after,.btn-light::after{content:"";position:absolute;left:0;right:0;bottom:0;pointer-events:none;height:100%;background:linear-gradient(0deg,#FCE0EA 0%,#F4B8CC 50%,#E898B0 100%);clip-path:polygon(0% 0%,0% 100%,8% 94%,18% 100%,28% 90%,38% 98%,48% 92%,58% 100%,68% 88%,78% 96%,88% 91%,100% 100%,100% 0%);transition:transform 0.55s;transform:translateY(100%)}
+      .btn:hover::after,.btn-primary:hover::after,.btn-secondary:hover::after,.btn-white:hover::after,.btn-light:hover::after{transform:translateY(0)}
+      .btn::before,.btn-primary::before,.btn-secondary::before,.btn-white::before,.btn-light::before{content:"";position:absolute;left:0;right:0;bottom:0;pointer-events:none;height:100%;background:linear-gradient(0deg,#F0C0D4 0%,#E090A8 50%,#D07090 100%);clip-path:polygon(0% 0%,0% 100%,12% 92%,22% 100%,35% 88%,45% 97%,55% 93%,65% 100%,75% 87%,85% 98%,95% 90%,100% 100%,100% 0%);transition:transform 0.7s;transform:translateY(100%)}
+      .btn:hover::before,.btn-primary:hover::before,.btn-secondary:hover::before,.btn-white:hover::before,.btn-light:hover::before{transform:translateY(0)}
+      .btn:hover,.btn-primary:hover,.btn-secondary:hover,.btn-white:hover,.btn-light:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,140,160,0.35);color:#0B2E59}
+      .btn span,.btn-primary span,.btn-secondary span,.btn-white span,.btn-light span{position:relative;z-index:2}
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+  </head>
+  <body class="pg-red page-products" x-data="siteApp">
+    <header class="header">
+      <nav class="container nav" aria-label="主导航">
+        <a class="logo" href="../index.html"><img src="https://www.tk163.com/wp-content/uploads/2026/03/cropped-logo.png" alt="一搜百应" class="logo-icon" /></a>
+        <button class="mobile btn-secondary" type="button" @click="menu=!menu" aria-label="打开导航">菜单</button>
+        <div class="navlinks" :class="{open:menu}">
+          <a href="../index.html">首页</a>
+          <a aria-current="page" href="index.html">产品中心</a>
+          <a href="../solutions/index.html">解决方案</a>
+          <a href="../cases/index.html">客户案例</a>
+          <a href="../news/index.html">新闻与知识</a>
+          <a href="../faq/index.html">FAQ中心</a>
+          <a href="../about.html">关于我们</a>
+          <a class="btn btn-white" href="../contact.html"><span>立即咨询</span></a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+      <header class="page-head pg-red">
+        <div class="container">
+          <h1>GEO 智能服务</h1>
+          <p class="page-subtitle">AI 时代品牌营销新基建 —— 从检测到优化，一站式提升品牌在生成式搜索中的能见度，每个模块可独立交付也可打包为整体方案。</p>
+        </div>
+      </header>
+
+      <section class="section bg-red">
+        <div class="container" x-data="filterableList">
+          <div class="filters">
+            <button :class="{active:filter==='all'}" @click="filter='all'">全部</button>
+            <button :class="{active:filter==='strategy'}" @click="filter='strategy'">检测与策略</button>
+            <button :class="{active:filter==='content'}" @click="filter='content'">内容与知识库</button>
+            <button :class="{active:filter==='data'}" @click="filter='data'">标记与运营</button>
+          </div>
+
+          <!-- Row 1: left to right -->
+          <div class="prod-carousel">
+            <div class="prod-track prod-track-ltr">
+              <article class="prod-card red" x-show="filter==='all'||filter==='strategy'">
+                <img src="https://picsum.photos/id/26/800/500" alt="GEO检测报告" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">检测 · 诊断</span><h3><a href="product-detail.html">GEO 检测报告</a></h3><p>全方位诊断网站技术架构与内容策略，生成专业的 GEO 成熟度评估报告，明确优化方向与机会点。</p></div>
+              </article>
+              <article class="prod-card orange" x-show="filter==='all'||filter==='content'">
+                <img src="https://picsum.photos/id/96/800/500" alt="可引用内容建设" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">内容 · 建设</span><h3>可引用内容建设</h3><p>建立语意完整的主题簇策略网络，强化品牌权威性，重构首页、产品页、案例页和知识文章表达体系。</p></div>
+              </article>
+              <article class="prod-card yellow" x-show="filter==='all'||filter==='content'">
+                <img src="https://picsum.photos/id/0/800/500" alt="FAQ与知识库建设" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">问答 · 知识库</span><h3>FAQ 与知识库建设</h3><p>围绕真实搜索问题建立 FAQ 中心、教程指南、术语解释和对比选型内容矩阵，提升被 ChatGPT/Perplexity 引用概率。</p></div>
+              </article>
+              <article class="prod-card green" x-show="filter==='all'||filter==='data'">
+                <img src="https://picsum.photos/id/1/800/500" alt="Schema结构化标记" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">技术 · 标记</span><h3>Schema 结构化标记</h3><p>自动化生成符合 Google 规范的语义标记，为企业、服务、文章、FAQ 补齐 JSON-LD，增强机器可读性。</p></div>
+              </article>
+              <article class="prod-card cyan" x-show="filter==='all'||filter==='content'">
+                <img src="https://picsum.photos/id/20/800/500" alt="行业案例内容工程" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">案例 · 工程</span><h3>行业案例内容工程</h3><p>深度服务 16,000+ 企业，把客户背景、问题、实施过程和效果数据结构化表达，建立行业证据链与最佳实践。</p></div>
+              </article>
+              <article class="prod-card purple" x-show="filter==='all'||filter==='data'">
+                <img src="https://picsum.photos/id/48/800/500" alt="持续运营与成效跟踪" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">运营 · 增长</span><h3>持续运营与成效跟踪</h3><p>长期追踪优化效果，定期提供报告与策略迭代建议，结合 CMS 持续发布内容，推动品牌在生成式搜索中长期增长。</p></div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Row 2: right to left -->
+          <div class="prod-carousel">
+            <div class="prod-track prod-track-rtl">
+              <article class="prod-card red" x-show="filter==='all'||filter==='strategy'">
+                <img src="https://picsum.photos/id/60/800/500" alt="品牌AI可见度监测" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">监测 · 诊断</span><h3>品牌 AI 可见度监测</h3><p>实时监测品牌在 DeepSeek、豆包、KIMI 等 8+ AI 平台中的曝光率与覆盖率，提供竞品对比与风险盲区识别。</p></div>
+              </article>
+              <article class="prod-card orange" x-show="filter==='all'||filter==='strategy'">
+                <img src="https://picsum.photos/id/180/800/500" alt="场景问题矩阵构建" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">策略 · 建模</span><h3>场景问题矩阵构建</h3><p>围绕真实业务场景梳理高价值问题话题库，关键词与长尾问法自动聚类，AI 挖掘潜在需求与决策场景。</p></div>
+              </article>
+              <article class="prod-card yellow" x-show="filter==='all'||filter==='content'">
+                <img src="https://picsum.photos/id/201/800/500" alt="品牌知识图谱搭建" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">知识 · 图谱</span><h3>品牌知识图谱搭建</h3><p>构建品牌语义模型，明确身份与能力边界，搭建品牌专属知识库与知识图谱，让 AI 精准理解业务。</p></div>
+              </article>
+              <article class="prod-card green" x-show="filter==='all'||filter==='data'">
+                <img src="https://picsum.photos/id/366/800/500" alt="AI训练与内容分发" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">训练 · 分发</span><h3>AI 训练与内容分发</h3><p>将品牌信息注入 AI 模型提升引用权重，RPA 矩阵一键分发至 12 大自媒体 + 10 万+ 权威媒体，效率提升 700%。</p></div>
+              </article>
+              <article class="prod-card cyan" x-show="filter==='all'||filter==='data'">
+                <img src="https://picsum.photos/id/0/800/500" alt="效果监测与策略闭环" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">报告 · 优化</span><h3>效果监测与策略闭环</h3><p>月度生成 AI 搜索可见度与引用报告，多引擎结果第三方截图留痕备查，效果对比驱动策略持续优化。</p></div>
+              </article>
+              <article class="prod-card purple" x-show="filter==='all'||filter==='strategy'">
+                <img src="https://picsum.photos/id/1/800/500" alt="竞品GEO对标分析" loading="lazy" width="800" height="500" />
+                <div class="prod-card-body"><span class="prod-tag">竞品 · 对标</span><h3>竞品 GEO 对标分析</h3><p>系统对比品牌与核心竞品在主流 AI 平台中的提及率、情感倾向和引用占比，精准定位差异化机会。</p></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div><strong>一搜百应GEO</strong><p>深圳一搜百应信息技术有限公司（简称"一搜百应"）成立于 2010 年，是国内领先的生成引擎优化（GEO）服务商，致力于帮助企业抢占AI搜索时代的流量入口。</p></div>
+          <div><strong>核心栏目</strong><a href="../solutions/index.html">解决方案</a><a href="../cases/index.html">客户案例</a></div>
+          <div><strong>知识内容</strong><a href="../news/index.html">新闻与知识</a><a href="../faq/index.html">FAQ中心</a></div>
+          <div><strong>联系信息</strong><a href="../contact.html">联系我们</a><p>地址：深圳市宝安区前海科兴科学园5栋707<br />邮箱：sunbo@esoboy.com</p></div>
+        </div>
+        <div class="footer-bottom">© 2026 一搜百应. 版权所有</div>
+      </div>
+    </footer>
+    <script src="../assets/js/main.js"></script>
+    <script>
+      document.querySelectorAll('.prod-track').forEach(function(track) {
+        track.innerHTML = track.innerHTML + track.innerHTML;
+      });
+    </script>
+  </body>
+</html>

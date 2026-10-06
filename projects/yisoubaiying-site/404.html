@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>页面未找到｜一搜百应GEO</title>
+    <meta name="description" content="页面暂时无法访问，请返回一搜百应GEO首页或联系顾问。" />
+    <meta name="keywords" content="404,页面未找到,一搜百应GEO" />
+    <link rel="stylesheet" href="assets/css/style.css?v=2" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+  </head>
+  <body class="page-404" x-data="siteApp">
+    <!-- ═══════════ Header / Navigation ═══════════ -->
+    <header class="header">
+      <nav class="container nav" aria-label="主导航">
+        <a class="logo" href="index.html"
+          ><img src="https://www.tk163.com/wp-content/uploads/2026/03/cropped-logo.png" alt="一搜百应" class="logo-icon" /></a
+        >
+        <button
+          class="mobile btn-secondary"
+          type="button"
+          @click="menu=!menu"
+          aria-label="打开导航"
+        >
+          菜单
+        </button>
+        <div class="navlinks" :class="{open:menu}">
+          <a href="index.html">首页</a>
+          <a href="products/index.html">产品中心</a>
+          <a href="solutions/index.html">解决方案</a>
+          <a href="cases/index.html">客户案例</a>
+          <a href="news/index.html">新闻与知识</a>
+          <a href="faq/index.html">FAQ中心</a>
+          <a href="about.html">关于我们</a>
+          <a class="btn btn-white" href="contact.html">立即咨询</a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="page-head">
+        <div class="container">
+          <span class="eyebrow">404</span>
+          <h1>页面未找到</h1>
+          <p class="lead">你访问的页面可能已移动或暂时不可用。可以返回首页，或直接提交咨询需求。</p>
+          <div class="button-row">
+            <a class="btn btn-secondary" href="index.html">返回首页</a>
+            <a class="btn-primary" href="contact.html">联系顾问</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

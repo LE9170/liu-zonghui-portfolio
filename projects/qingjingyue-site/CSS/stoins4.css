@@ -1,0 +1,52 @@
+.stoil4 .biaoti4 {
+    background-image: url('../images/stoins4/disanbankuaiyishuzi.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 200px;
+}
+
+.stoil4 .wepo {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+}
+
+.stoil4 .wepo ul {
+    list-style-type: none;
+    width: 1040px;
+    margin: auto auto;
+}
+
+.stoil4 .wepo ul li {
+    font-weight: 700;
+    display: block;
+    font-size: 30px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.stoil4 .wepo ul li.fade-in {
+    opacity: 1;
+}
+
+.stoil4 .media-container {
+    position: relative;
+    width: 700px;
+    height: 500px;
+    margin: auto;
+}
+
+.stoil4 .media-container img {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.stoil4 .media-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}

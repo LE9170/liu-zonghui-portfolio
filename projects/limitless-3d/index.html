@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phase 5A — 10-Chapter Scene Reconstruction | LIMITLESS</title>
+  <meta name="description" content="Phase 5A: Reference video scene-level reconstruction with Catmull-Rom camera paths." />
+
+  <script>
+    (() => {
+      const skipIntro = new URLSearchParams(window.location.search).get('skipIntro') === '1';
+      window.__phase5PreludeActive = !skipIntro;
+      if (!skipIntro) document.documentElement.classList.add('phase5-prelude-active');
+    })();
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: auto; }
+    body {
+      background: #06061a;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    #scroll-driver { height: 1000vh; pointer-events: none; }
+
+    #phase5-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; z-index: 0;
+    }
+
+    /* ── Loading Screen ── */
+    #loading-screen {
+      position: fixed; inset: 0; z-index: 100;
+      background: #06061a;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 1; transition: opacity 0.6s ease;
+    }
+    #loading-screen .tri-icon {
+      width: 64px; height: 64px;
+      border: 2px solid rgba(212,175,55,0.55);
+      transform: rotate(45deg);
+      box-shadow: 0 0 30px rgba(212,175,55,0.2);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(212,175,55,0.2); }
+      50% { box-shadow: 0 0 50px rgba(212,175,55,0.45); }
+    }
+    #loading-screen p {
+      margin-top: 1.5rem; font-size: 0.8rem;
+      color: rgba(212,175,55,0.5); letter-spacing: 0.18em;
+      font-family: 'Inter', sans-serif; font-weight: 300;
+    }
+
+    /* ── Init Error ── */
+    #init-error {
+      position: fixed; inset: 0; z-index: 98;
+      background: #0a0a10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #fff; text-align: center;
+      font-family: 'Inter', sans-serif;
+    }
+    #init-error h3 { font-size: 1.1rem; font-weight: 400; color: #e08060; margin-bottom: 0.5rem; }
+    #init-error p { font-size: 0.8rem; color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.5; }
+    #init-error button {
+      cursor: pointer; margin-top: 1rem;
+      padding: 0.5rem 1.5rem; border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 2rem; background: transparent; color: #fff;
+      transition: background 0.2s;
+    }
+    #init-error button:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── DOM Overlay ── */
+    #overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1; pointer-events: none;
+    }
+
+    /* ── Cinematic vignette (adds depth, zero GPU cost) ── */
+    #p5-vignette {
+      position: fixed; inset: 0;
+      z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 120% 90% at 50% 42%, transparent 58%, rgba(10, 5, 24, 0.34) 100%),
+        linear-gradient(to bottom, rgba(10, 5, 24, 0.10), transparent 18%, transparent 84%, rgba(10, 5, 24, 0.16));
+    }
+
+    /* ── Debug info bar (always visible, styled subtly) ── */
+    #debug-bar {
+      position: fixed; bottom: 10px; left: 10px;
+      z-index: 150;
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      color: rgba(255,255,255,0.35);
+      pointer-events: none;
+      user-select: none;
+      display: none;
+    }
+    #debug-bar.show { display: block; }
+
+    /* ── Main Title ── */
+    #main-title {
+      position: absolute;
+      left: 8%; bottom: 26%;
+      max-width: 520px;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #e8e0f0;
+      text-shadow: 0 0 30px rgba(0,0,0,0.9);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    #main-title.visible { opacity: 1; }
+
+    /* ── Subtitle ── */
+    #subtitle {
+      position: absolute;
+      left: 8%; bottom: 20%;
+      max-width: 400px;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #a098b8;
+      text-shadow: 0 0 20px rgba(0,0,0,0.8);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    #subtitle.visible { opacity: 1; }
+
+    /* ── Center-stage Title (ocean / island / ingredients chapters) ── */
+    #stage-title {
+      position: absolute;
+      left: 50%; top: 34%;
+      transform: translateX(-50%);
+      max-width: min(680px, 84vw);
+      text-align: center;
+      font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 1.25;
+      color: #f4eef8;
+      text-shadow: 0 2px 24px rgba(20, 8, 36, 0.75), 0 0 8px rgba(20, 8, 36, 0.5);
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+    #stage-title.visible { opacity: 1; }
+    /* Auto contrast on bright pink chapters — deep violet ink, pale halo */
+    #stage-title.on-light {
+      color: #4a2c62;
+      text-shadow: 0 1px 18px rgba(252, 240, 248, 0.85), 0 0 6px rgba(252, 240, 248, 0.6);
+    }
+    #stage-sub {
+      position: absolute;
+      left: 50%; top: calc(34% + clamp(2.2rem, 4.2vw, 3.6rem));
+      transform: translateX(-50%);
+      max-width: min(560px, 80vw);
+      text-align: center;
+      font-size: clamp(1rem, 1.8vw, 1.35rem);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      color: rgba(238, 228, 246, 0.85);
+      text-shadow: 0 2px 18px rgba(20, 8, 36, 0.7);
+      opacity: 0;
+      transition: opacity 0.6s ease 0.08s;
+      pointer-events: none;
+    }
+    #stage-sub.visible { opacity: 1; }
+    #stage-sub.on-light {
+      color: rgba(88, 56, 112, 0.92);
+      text-shadow: 0 1px 14px rgba(252, 240, 248, 0.8);
+    }
+
+    /* ── Chapter label (debug) ── */
+    #chapter-label {
+      position: absolute;
+      top: 16px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      pointer-events: none;
+      user-select: none;
+    }
+    #global-progress, #local-progress {
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ── CTA Button ── */
+    #cta-button {
+      position: absolute;
+      left: 8%; bottom: 14%;
+      display: inline-block;
+      padding: 0.7rem 2.1rem;
+      border: 1px solid rgba(212, 175, 55, 0.42);
+      border-radius: 2rem;
+      color: #e8d8a8;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      pointer-events: auto;
+      opacity: 0;
+      transition: opacity 0.5s ease, background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      text-decoration: none;
+    }
+    #cta-button.visible { opacity: 1; }
+    #cta-button:hover {
+      background: rgba(212, 175, 55, 0.10);
+      border-color: rgba(212, 175, 55, 0.75);
+      box-shadow: 0 0 22px rgba(212, 175, 55, 0.16), inset 0 0 12px rgba(212, 175, 55, 0.06);
+    }
+
+    /* ── Ingredient Icons ── */
+    .ingredient-icons-row {
+      position: absolute;
+      left: 50%; top: 55%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2rem;
+      pointer-events: none;
+    }
+    .ingredient-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(216, 190, 235, 0.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(26, 16, 48, 0.42);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.4s ease;
+      position: relative;
+    }
+    /* Minimal line-mark (no emoji): outer ring + inner dot, hue per icon */
+    .ingredient-icon::before {
+      content: '';
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      border: 1px solid hsl(var(--h, 265), 45%, 78%);
+      opacity: 0.9;
+    }
+    .ingredient-icon::after {
+      content: '';
+      position: absolute;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: hsl(var(--h, 265), 55%, 82%);
+      box-shadow: 0 0 8px hsl(var(--h, 265), 60%, 75%);
+    }
+
+    /* ── Benefit Cards ── */
+    .benefit-card {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      text-align: left;
+      max-width: 220px;
+      background: rgba(20, 12, 40, 0.75);
+      border: 1px solid rgba(160, 140, 200, 0.25);
+      border-radius: 8px;
+      padding: 12px 16px;
+      backdrop-filter: blur(6px);
+      transform: translate(-50%, -50%);
+    }
+    .benefit-card.active { opacity: 1; }
+    .benefit-card .bc-title {
+      font-size: 0.85rem; font-weight: 500;
+      color: #e0d8f8; letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+    .benefit-card .bc-desc {
+      font-size: 0.7rem; color: #a098c8; line-height: 1.4;
+    }
+    .benefit-card .bc-num {
+      font-size: 0.65rem; color: rgba(180, 160, 210, 0.45);
+      margin-top: 0.35rem; letter-spacing: 0.06em;
+    }
+    /* Connector line from card to node (default: left-side) */
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      left: -20px; top: 50%;
+      width: 16px; height: 1px;
+      background: rgba(160, 140, 200, 0.3);
+    }
+    /* Below-node mode: vertical connector pointing UP at the 3D node */
+    .benefit-card.below {
+      text-align: center;
+      transform: translate(-50%, 0);
+    }
+    .benefit-card.below::before {
+      left: 50%; top: -18px;
+      width: 1px; height: 14px;
+      background: linear-gradient(to top, rgba(216, 190, 235, 0.5), rgba(216, 190, 235, 0.08));
+    }
+    .benefit-card.below::after {
+      content: '';
+      position: absolute;
+      left: 50%; top: -22px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      background: rgba(226, 205, 245, 0.75);
+      box-shadow: 0 0 7px rgba(216, 190, 235, 0.6);
+    }
+
+    /* ── Footer Panel — translucent floating bar, merges with the final frame ── */
+    #footer-panel {
+      position: fixed; bottom: 20px; left: 50%; z-index: 3;
+      width: auto; max-width: 92vw;
+      background: rgba(16, 10, 32, 0.52);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      border-radius: 14px;
+      backdrop-filter: blur(10px);
+      padding: 0.8rem 1.8rem;
+      display: flex; gap: 2.5rem; justify-content: space-between; align-items: center;
+      transform: translateX(-50%) translateY(180%);
+      transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+      font-size: 0.72rem; letter-spacing: 0.05em; color: rgba(235, 225, 245, 0.5);
+      pointer-events: auto;
+      white-space: nowrap;
+    }
+    #footer-panel.visible { transform: translateX(-50%) translateY(0); }
+    #footer-panel a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    #footer-panel a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ── Navigation ── */
+    .ghost-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 2;
+      pointer-events: none;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2rem;
+    }
+    .ghost-nav .brand {
+      font-size: 0.95rem; font-weight: 400;
+      color: rgba(255,255,255,0.55); letter-spacing: 0.24em;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      #main-title { left: 5%; bottom: 22%; max-width: 90vw; }
+      #subtitle { left: 5%; bottom: 16%; max-width: 90vw; }
+      #cta-button { left: 5%; bottom: 10%; }
+      .ingredient-icons-row { gap: 1rem; top: 50%; }
+      .ingredient-icon { width: 40px; height: 40px; }
+      .ingredient-icon::before { width: 14px; height: 14px; }
+      .benefit-card { max-width: 150px; }
+      .benefit-card .bc-title { font-size: 0.75rem; }
+      .benefit-card .bc-desc { font-size: 0.65rem; }
+      .ghost-nav { padding: 1rem 1.2rem; }
+      #footer-panel { padding: 0.7rem 1.2rem; gap: 1rem; flex-direction: column; white-space: normal; text-align: center; }
+    }
+    [hidden] { display: none !important; }
+
+    html.phase5-prelude-active,
+    html.phase5-prelude-active body {
+      overflow: hidden !important;
+      overscroll-behavior: none;
+    }
+
+    #phase5-prelude {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      overflow: hidden;
+      background: #080910;
+      opacity: 1;
+      isolation: isolate;
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html.phase5-prelude-active #phase5-prelude { display: block; }
+    #phase5-prelude.is-leaving { opacity: 0; pointer-events: none; }
+
+    #phase5-prelude-frame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #080910;
+    }
+
+    #phase5-prelude-controls {
+      position: absolute;
+      right: clamp(16px, 2.5vw, 40px);
+      bottom: clamp(16px, 2.5vw, 36px);
+      display: grid;
+      grid-template-columns: auto minmax(90px, 180px) auto;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      color: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(202, 168, 72, 0.25);
+      border-radius: 999px;
+      background: rgba(5, 6, 12, 0.68);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      font: 500 10px/1.2 "Segoe UI", sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    #phase5-prelude-progress {
+      width: 100%;
+      height: 2px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    #phase5-prelude-progress i {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: #caa848;
+      transition: width 0.16s linear;
+    }
+
+    #phase5-prelude-controls button {
+      appearance: none;
+      padding: 7px 12px;
+      color: #d9c47e;
+      border: 1px solid rgba(202, 168, 72, 0.42);
+      border-radius: 999px;
+      background: rgba(8, 9, 16, 0.72);
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      cursor: pointer;
+    }
+
+    #phase5-prelude-controls button:hover,
+    #phase5-prelude-controls button:focus-visible {
+      color: #fff3c4;
+      border-color: rgba(202, 168, 72, 0.8);
+      outline: none;
+    }
+
+    @media (max-width: 720px) {
+      #phase5-prelude-controls {
+        left: 12px;
+        right: 12px;
+        grid-template-columns: 1fr auto;
+      }
+      #phase5-prelude-hint { display: none; }
+      #phase5-prelude-progress { grid-row: 2; grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="phase5-prelude" aria-label="LIMITLESS opening experience">
+    <iframe
+      id="phase5-prelude-frame"
+      title="LIMITLESS opening experience"
+      src="./final.html?phase5Prelude=1&amp;v=20260812"
+      loading="eager"
+      allow="fullscreen"
+    ></iframe>
+    <div id="phase5-prelude-controls">
+      <span id="phase5-prelude-hint">Scroll through the opening</span>
+      <span id="phase5-prelude-progress" role="progressbar" aria-label="Opening progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></span>
+      <button id="phase5-prelude-skip" type="button">Skip intro</button>
+      <button id="phase5-prelude-continue" type="button" hidden>Continue to Phase 5</button>
+    </div>
+  </section>
+
+  <div id="scroll-driver"></div>
+  <canvas id="phase5-canvas" role="img" aria-label="Phase 5A — 10-chapter 3D brand story"></canvas>
+  <div id="p5-vignette" aria-hidden="true"></div>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="tri-icon"></div>
+    <p>Phase 5A Loading...</p>
+  </div>
+
+  <!-- Init Error -->
+  <div id="init-error" hidden></div>
+
+  <!-- DOM Overlay -->
+  <div id="overlay">
+    <!-- Chapter + progress (debug) -->
+    <div id="chapter-label"></div>
+    <div id="global-progress" style="position:absolute;top:34px;left:50%;transform:translateX(-50%);"></div>
+    <div id="local-progress" style="position:absolute;top:48px;left:50%;transform:translateX(-50%);"></div>
+
+    <!-- Main Title -->
+    <div id="main-title"></div>
+
+    <!-- Subtitle -->
+    <div id="subtitle"></div>
+
+    <!-- Center-stage Title (ocean / island / ingredients chapters) -->
+    <div id="stage-title"></div>
+    <div id="stage-sub"></div>
+
+    <!-- CTA Button -->
+    <a id="cta-button" href="javascript:void(0)" role="button" tabindex="0">Explore Products →</a>
+
+    <!-- Ingredient Icons (Chapter 8) — minimal line-marks, no emoji -->
+    <div class="ingredient-icons-row">
+      <div class="ingredient-icon" style="--h:150;transition-delay:0s"></div>
+      <div class="ingredient-icon" style="--h:35;transition-delay:0.06s"></div>
+      <div class="ingredient-icon" style="--h:270;transition-delay:0.12s"></div>
+      <div class="ingredient-icon" style="--h:195;transition-delay:0.18s"></div>
+      <div class="ingredient-icon" style="--h:340;transition-delay:0.24s"></div>
+      <div class="ingredient-icon" style="--h:85;transition-delay:0.30s"></div>
+    </div>
+
+    <!-- Benefit Cards -->
+    <div class="benefit-card" id="bc-energy" style="top:35%;left:50%;"><div class="bc-title">Energy Levels</div><div class="bc-desc">Sustained vitality from marine botanicals</div></div>
+    <div class="benefit-card" id="bc-cognitive" style="top:38%;left:48%;"><div class="bc-title">Cognitive Function</div><div class="bc-desc">Sharpen focus with Arctic nutrients</div></div>
+    <div class="benefit-card" id="bc-skin"><div class="bc-title">Deep Cellular Support</div><div class="bc-desc">Marine nutrients designed for daily cellular resilience.</div><div class="bc-num">03 / 05</div></div>
+    <div class="benefit-card" id="bc-respiratory" style="top:42%;left:47%;"><div class="bc-title">Respiratory Health</div><div class="bc-desc">Breathe easier with marine extracts</div></div>
+    <div class="benefit-card" id="bc-digestive" style="top:44%;left:50%;"><div class="bc-title">Digestive Health</div><div class="bc-desc">Gut balance from ocean minerals</div></div>
+  </div>
+
+  <!-- Footer Panel -->
+  <div id="footer-panel">
+    <span>© LIMITLESS — Premium Marine Supplements</span>
+    <span><a href="javascript:void(0)">Privacy</a> · <a href="javascript:void(0)">Terms</a> · <a href="javascript:void(0)">Contact</a></span>
+  </div>
+
+  <!-- Navigation -->
+  <div class="ghost-nav">
+    <span class="brand">LIMITLESS</span>
+  </div>
+
+  <!-- Debug bar (always shows chapter at bottom-left) -->
+  <div id="debug-bar"></div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SCRIPTS -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/build/three.module.js",
+      "three/addons/": "./vendor/three/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="./assets/js/phase5/prelude.js?v=20260813-r2"></script>
+  <script src="./vendor/gsap/gsap.min.js"></script>
+  <script src="./vendor/gsap/ScrollTrigger.min.js"></script>
+
+  <script type="module">
+  /**
+   * Phase 5A — 10-Chapter Scene Reconstruction
+   *
+   * All dependencies are local — zero CDN requests.
+   */
+  const _lel = document.getElementById('loading-screen');
+  const _eel = document.getElementById('init-error');
+  const _show = (t,d) => {
+    console.error(t,d);
+    if(_lel) _lel.style.display='none';
+    if(_eel){
+      _eel.hidden=false;
+      _eel.innerHTML='<h3>'+t+'</h3><p>'+d+'</p><p style="margin-top:1rem;font-size:0.7rem"><button onclick="location.reload()" style="padding:4px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:1rem;background:transparent;color:#fff;cursor:pointer">Retry</button></p>';
+    }
+  };
+  const _wd = setTimeout(() => _show('Startup Timeout','The experience took too long to start (10s). Check the Network tab.'), 10000);
+  window.addEventListener('error', e => {
+    if (e.filename && e.filename.includes('phase5')) {
+      clearTimeout(_wd);
+      _show('Module Load Error', e.message||'');
+    }
+  });
+  import('./assets/js/phase5/main.js?v=20260806-p5p')
+    .then(() => clearTimeout(_wd))
+    .catch(err => { clearTimeout(_wd); _show('Startup Failed', (err.message||String(err)).slice(0,200)); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>联系我们 - 一搜百应</title>
+    <meta
+      name="description"
+      content="获取一搜百应的联系方式，随时欢迎您咨询GEO生成引擎优化、AI搜索营销与合作。"
+    />
+    <meta
+      name="keywords"
+      content="联系我们,GEO咨询,一搜百应,AI搜索优化,企业网站优化"
+    />
+    <link rel="canonical" href="https://www.yisoubaiying.com/contact.html" />
+    <link rel="stylesheet" href="assets/css/style.css?v=2" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body class="pg-blue page-contact" x-data="siteApp">
+    <header class="header">
+      <nav class="container nav" aria-label="主导航">
+        <a class="logo" href="index.html"><img src="https://www.tk163.com/wp-content/uploads/2026/03/cropped-logo.png" alt="一搜百应" class="logo-icon" /></a>
+        <button
+          class="mobile btn-secondary"
+          type="button"
+          @click="menu=!menu"
+          aria-label="打开导航"
+        >
+          菜单
+        </button>
+        <div class="navlinks" :class="{open:menu}">
+          <a href="index.html">首页</a>
+          <a href="products/index.html">产品中心</a>
+          <a href="solutions/index.html">解决方案</a>
+          <a href="cases/index.html">客户案例</a>
+          <a href="news/index.html">新闻与知识</a>
+          <a href="faq/index.html">FAQ中心</a>
+          <a href="about.html">关于我们</a>
+          <a aria-current="page" class="btn btn-white" href="contact.html">立即咨询</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+      <header class="page-head pg-blue">
+        <div class="container">
+          <h1>联系我们</h1>
+          <p class="page-subtitle">获取一搜百应的联系方式，随时欢迎您咨询与合作。</p>
+        </div>
+      </header>
+
+      <section class="section bg-blue">
+        <div class="container split">
+          <aside class="card">
+            <img
+              src="https://picsum.photos/id/180/800/500"
+              alt="联系一搜百应：提交GEO企业站与AI搜索优化咨询需求"
+              loading="lazy"
+              width="800"
+              height="500"
+            />
+            <h2>联系信息</h2>
+            <p class="contact-list">
+              企业名称：深圳一搜百应信息技术有限公司<br />
+              联系电话：13691691391<br />
+              微信：wow1314<br />
+              邮箱：sunbo@esoboy.com<br />
+              地址：深圳市宝安区前海科兴科学园5栋707
+            </p>
+            <div class="faq" style="margin-top: 22px">
+              <details open>
+                <summary>咨询前建议准备哪些信息？</summary>
+                <p>建议说明所属行业、当前品牌官网情况、希望优化的方向以及对AI搜索曝光和线索转化的目标，方便我们为您量身评估GEO方案。</p>
+              </details>
+            </div>
+          </aside>
+          <form class="form card" x-data="contactForm" @submit.prevent="submit">
+            <h2>发送消息</h2>
+            <label>姓名<input required name="name" autocomplete="name" /></label>
+            <label>公司名称<input required name="company" autocomplete="organization" /></label>
+            <label
+              >需求类型
+              <select name="type">
+                <option>GEO企业网站建设</option>
+                <option>FAQ知识库建设</option>
+                <option>案例中心与文章优化</option>
+                <option>结构化数据与GEO咨询</option>
+              </select>
+            </label>
+            <label
+              >具体需求
+              <textarea required name="message" rows="6"></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">提交咨询</button>
+            <p class="notice" x-show="sent" x-text="message" role="status"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <strong>一搜百应GEO</strong>
+            <p>搜索决定影响力，让品牌一搜百应。</p>
+          </div>
+          <div>
+            <strong>栏目导航</strong>
+            <a href="products/index.html">产品中心</a>
+            <a href="solutions/index.html">解决方案</a>
+          </div>
+          <div>
+            <strong>知识内容</strong>
+            <a href="news/index.html">新闻与知识</a>
+            <a href="faq/index.html">FAQ中心</a>
+          </div>
+          <div>
+            <strong>更多</strong>
+            <a href="about.html">关于我们</a>
+            <a href="contact.html">联系我们</a>
+          </div>
+        </div>
+        <div class="footer-bottom">© 2026 一搜百应GEO</div>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LIMITLESS — Premium Marine Supplements</title>
+  <meta name="description" content="Discover the purest marine nutrients sourced from the pristine Canadian Arctic." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: auto; }
+    body {
+      background: #06061a;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    #scroll-driver { height: 900vh; pointer-events: none; }
+
+    #phase2-canvas {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; z-index: 0;
+    }
+
+    /* ── Loading Screen ── */
+    #loading-screen {
+      position: fixed; inset: 0; z-index: 100;
+      background: #06061a;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 1; transition: opacity 0.6s ease;
+    }
+    #loading-screen .tri-icon {
+      width: 64px; height: 64px;
+      border: 2px solid rgba(212,175,55,0.55);
+      transform: rotate(45deg);
+      box-shadow: 0 0 30px rgba(212,175,55,0.2);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(212,175,55,0.2); }
+      50% { box-shadow: 0 0 50px rgba(212,175,55,0.45); }
+    }
+    #loading-screen p {
+      margin-top: 1.5rem; font-size: 0.8rem;
+      color: rgba(212,175,55,0.5); letter-spacing: 0.18em;
+      font-family: 'Inter', sans-serif; font-weight: 300;
+    }
+
+    /* ── Error Fallback (WebGL context loss only) ── */
+    #error-fallback {
+      position: fixed; inset: 0; z-index: 99;
+      background: #0a0a10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #fff; text-align: center;
+      font-family: 'Inter', sans-serif;
+    }
+    #error-fallback .tri-icon {
+      width: 64px; height: 64px;
+      border: 2px solid rgba(212,175,55,0.25);
+      transform: rotate(45deg);
+      margin-bottom: 2rem;
+    }
+    #error-fallback h3 { font-size: 1.2rem; font-weight: 300; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; }
+    #error-fallback p { font-size: 0.8rem; color: rgba(255,255,255,0.3); max-width: 320px; }
+
+    /* ── Init Error ── */
+    #init-error {
+      position: fixed; inset: 0; z-index: 98;
+      background: #0a0a10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #fff; text-align: center;
+      font-family: 'Inter', sans-serif;
+    }
+    #init-error h3 { font-size: 1.1rem; font-weight: 400; color: #e08060; margin-bottom: 0.5rem; }
+    #init-error p { font-size: 0.8rem; color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.5; }
+    #init-error button {
+      cursor: pointer; margin-top: 1rem;
+      padding: 0.5rem 1.5rem; border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 2rem; background: transparent; color: #fff;
+      transition: background 0.2s;
+    }
+    #init-error button:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── DOM Overlay ── */
+    #overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1; pointer-events: none;
+    }
+
+    .stage-text {
+      position: absolute; opacity: 0;
+      transition: opacity 0.5s ease;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(0,0,0,0.9);
+      pointer-events: none;
+    }
+    .stage-text.visible { opacity: 1; }
+
+    /* Entrance */
+    .stage-entrance { left: 50%; top: 42%; transform: translate(-50%, -50%); text-align: center; }
+    .stage-entrance .tri-icon {
+      width: 64px; height: 64px; margin: 0 auto;
+      border: 2px solid rgba(212,175,55,0.55);
+      transform: rotate(45deg);
+      box-shadow: 0 0 30px rgba(212,175,55,0.2);
+    }
+    .stage-entrance p { margin-top: 1.2rem; font-size: 0.8rem; color: rgba(212,175,55,0.65); letter-spacing: 0.18em; }
+
+    /* Hero */
+    .stage-hero { left: 8%; bottom: 26%; max-width: 520px; }
+    .stage-hero h1 { font-size: clamp(2rem, 5vw, 4rem); font-weight: 300; letter-spacing: -0.02em; line-height: 1.1; color: #e8e0f0; }
+    .stage-hero p  { margin-top: 1rem; font-size: 1rem; font-weight: 300; color: #a098b8; max-width: 380px; }
+
+    /* Surface */
+    .stage-surface { left: 50%; top: 40%; transform: translate(-50%, -50%); text-align: center; }
+    .stage-surface h2 { font-size: clamp(1.6rem, 3.5vw, 3rem); font-weight: 300; letter-spacing: 0.03em; color: #f0d8e0; }
+    .stage-surface .sub { margin-top: 0.6rem; font-size: 0.95rem; color: #c0a0b0; }
+
+    /* Underwater */
+    .stage-uw { left: 8%; bottom: 26%; max-width: 480px; }
+    .stage-uw h2 { font-size: clamp(1.8rem, 4vw, 3.2rem); font-weight: 300; line-height: 1.15; color: #d8d0f0; }
+    .stage-uw p  { margin-top: 0.8rem; font-size: 0.9rem; color: #a098c8; }
+
+    /* Proof */
+    .stage-proof { left: 50%; top: 35%; transform: translate(-50%, -50%); text-align: center; }
+    .stage-proof h2 { font-size: clamp(1.8rem, 4.5vw, 3.4rem); font-weight: 300; line-height: 1.2; color: #e8e0f8; }
+    .stage-proof h2 em { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; }
+    .stage-proof .icons-row { display: flex; gap: 2rem; justify-content: center; margin-top: 2.2rem; flex-wrap: wrap; }
+    .stage-proof .icon-svg {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 1.5px solid rgba(200,180,220,0.3);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      background: rgba(30,20,50,0.5);
+    }
+    .stage-proof.visible .icon-svg { opacity: 1; transform: translateY(0); }
+    .stage-proof .icon-svg svg { width: 22px; height: 22px; stroke: #c8b8e0; fill: none; }
+
+    /* Final CTA */
+    .stage-final { left: 8%; bottom: 20%; max-width: 440px; }
+    .stage-final h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 300; color: #f0e8e0; }
+    .stage-final p  { margin-top: 0.8rem; font-size: 0.95rem; color: #b0a090; }
+    .stage-final .cta-btn {
+      display: inline-block; margin-top: 1.2rem;
+      padding: 0.75rem 2rem;
+      border: 1px solid rgba(200,180,140,0.5);
+      border-radius: 2rem; color: #e0d0b0;
+      font-size: 0.9rem; cursor: pointer;
+      pointer-events: auto;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .stage-final .cta-btn:hover { background: rgba(200,180,140,0.15); border-color: rgba(200,180,140,0.7); }
+    .stage-final .cta-btn:focus-visible { outline: 2px solid #d4b860; outline-offset: 2px; }
+
+    /* ── Footer Panel ── */
+    #footer-panel {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 3;
+      background: rgba(8,4,20,0.95); border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 1.2rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+      font-size: 0.75rem; color: rgba(255,255,255,0.4);
+      pointer-events: auto;
+    }
+    #footer-panel.visible { transform: translateY(0); }
+    #footer-panel a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    #footer-panel a:hover { color: rgba(255,255,255,0.8); }
+    #footer-panel a:focus-visible { outline: 2px solid #d4b860; outline-offset: 2px; }
+
+    /* ── Navigation ── */
+    .ghost-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 2;
+      pointer-events: none;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2rem;
+    }
+    .ghost-nav .brand { font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.65); letter-spacing: 0.06em; }
+
+    /* ── Benefit info cards ── */
+    .benefit-card {
+      position: absolute; pointer-events: none;
+      opacity: 0; transform: translate(-50%, -50%);
+      transition: opacity 0.35s ease;
+      text-align: center; max-width: 180px;
+    }
+    .benefit-card.active { opacity: 1; }
+    .benefit-card .bc-title { font-size: 0.85rem; font-weight: 500; color: #e0d8f8; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
+    .benefit-card .bc-desc { font-size: 0.7rem; color: #a098c8; line-height: 1.4; }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .stage-hero { left: 5%; bottom: 22%; max-width: 90vw; }
+      .stage-uw { left: 5%; bottom: 22%; max-width: 90vw; }
+      .stage-final { left: 5%; bottom: 18%; max-width: 90vw; }
+      .stage-proof { top: 30%; }
+      .stage-proof .icons-row { gap: 1rem; }
+      .stage-proof .icon-svg { width: 40px; height: 40px; }
+      .benefit-card { max-width: 150px; }
+      .benefit-card .bc-title { font-size: 0.75rem; }
+      .benefit-card .bc-desc { font-size: 0.65rem; }
+      .ghost-nav { padding: 1rem 1.2rem; }
+      #footer-panel { padding: 1rem 1.2rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="scroll-driver"></div>
+  <canvas id="phase2-canvas" role="img" aria-label="Interactive 3D brand story — scroll to explore"></canvas>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="tri-icon"></div>
+    <p>Loading...</p>
+  </div>
+
+  <!-- Error Fallback (WebGL context loss only) -->
+  <div id="error-fallback" hidden>
+    <div class="tri-icon"></div>
+    <h3>Rendering Unavailable</h3>
+    <p>Your browser or device does not support the WebGL features required for this experience.</p>
+    <p style="margin-top: 1rem;">LIMITLESS — Premium Marine Supplements</p>
+  </div>
+
+  <!-- Init Error (non-WebGL failures) -->
+  <div id="init-error" hidden></div>
+
+  <!-- DOM Overlay -->
+  <div id="overlay">
+    <!-- Entrance -->
+    <div class="stage-text stage-entrance" data-stage="entrance">
+      <div class="tri-icon"></div>
+      <p>ENTER EXPERIENCE</p>
+    </div>
+
+    <!-- Hero -->
+    <div class="stage-text stage-hero" data-stage="hero">
+      <h1>Limitless<br>begins here.</h1>
+      <p>Discover the purest marine nutrients sourced from the pristine Canadian Arctic.</p>
+    </div>
+
+    <!-- Surface -->
+    <div class="stage-text stage-surface" data-stage="surface">
+      <h2>All naturally sourced marine<br>ingredients from Canada.</h2>
+      <p class="sub">Scroll to explore ↓</p>
+    </div>
+
+    <!-- Coral Island -->
+    <div class="stage-text stage-surface" data-stage="island" style="top:35%;">
+      <h2>Harvested from pristine<br>Arctic waters.</h2>
+    </div>
+
+    <!-- Underwater -->
+    <div class="stage-text stage-uw" data-stage="underwater">
+      <h2>The real<br>limitless pill.</h2>
+      <p>Encapsulated marine botanicals — pure potency.</p>
+    </div>
+
+    <!-- Proof -->
+    <div class="stage-text stage-proof" data-stage="proof">
+      <h2>100% wildcrafted<br><em>and raw herbs.</em></h2>
+      <div class="icons-row">
+        <div class="icon-svg" style="transition-delay:0s"><svg viewBox="0 0 24 24"><path d="M12 2C8 6 4 8 4 12c0 4.4 3.6 8 8 8s8-3.6 8-8c0-4-4-6-8-10z" stroke-width="1.5"/></svg></div>
+        <div class="icon-svg" style="transition-delay:0.06s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke-width="1.5"/></svg></div>
+        <div class="icon-svg" style="transition-delay:0.12s"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" stroke-width="1.5"/></svg></div>
+        <div class="icon-svg" style="transition-delay:0.18s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke-width="1.5"/></svg></div>
+        <div class="icon-svg" style="transition-delay:0.24s"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2" stroke-width="1.5"/><path d="M8 10h8M8 14h4" stroke-width="1.5"/></svg></div>
+        <div class="icon-svg" style="transition-delay:0.30s"><svg viewBox="0 0 24 24"><path d="M3 12c3-6 9-7 12-3s3 12-3 12-12-3-9-9z" stroke-width="1.5"/></svg></div>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="stage-text stage-final" data-stage="final">
+      <h2>A better you<br>starts here.</h2>
+      <p>Premium marine supplements backed by science. Experience the difference.</p>
+      <a class="cta-btn" href="javascript:void(0)" role="button" tabindex="0">Explore Products →</a>
+    </div>
+
+    <!-- Benefit info cards -->
+    <div class="benefit-card" id="bc-energy"><div class="bc-title">Energy Levels</div><div class="bc-desc">Sustained vitality from marine botanicals</div></div>
+    <div class="benefit-card" id="bc-cognitive"><div class="bc-title">Cognitive Function</div><div class="bc-desc">Sharpen focus with Arctic nutrients</div></div>
+    <div class="benefit-card" id="bc-skin"><div class="bc-title">Skin Health</div><div class="bc-desc">Deep cellular repair from the sea</div></div>
+    <div class="benefit-card" id="bc-respiratory"><div class="bc-title">Respiratory Health</div><div class="bc-desc">Breathe easier with marine extracts</div></div>
+    <div class="benefit-card" id="bc-digestive"><div class="bc-title">Digestive Health</div><div class="bc-desc">Gut balance from ocean minerals</div></div>
+  </div>
+
+  <!-- Footer Panel -->
+  <div id="footer-panel">
+    <span>© LIMITLESS — Premium Marine Supplements</span>
+    <span><a href="javascript:void(0)">Privacy</a> · <a href="javascript:void(0)">Terms</a> · <a href="javascript:void(0)">Contact</a></span>
+  </div>
+
+  <!-- Navigation -->
+  <div class="ghost-nav">
+    <span class="brand">LIMITLESS</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- SCRIPTS -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./vendor/three/build/three.module.js",
+      "three/addons/": "./vendor/three/examples/jsm/"
+    }
+  }
+  </script>
+  <script src="./vendor/gsap/gsap.min.js"></script>
+  <script src="./vendor/gsap/ScrollTrigger.min.js"></script>
+
+  <script type="module">
+  /**
+   * final.html — Production Candidate
+   * Imports phase4/main.js orchestration module (all visual logic lives there).
+   * This file is intentionally thin: HTML/CSS structure + module entry point.
+   *
+   * Architecture:
+   *   final.html → assets/js/phase4/main.js → phase4/* (visual) + phase3/* (infrastructure)
+   */
+  import './assets/js/phase4/main.js';
+  </script>
+</body>
+</html>

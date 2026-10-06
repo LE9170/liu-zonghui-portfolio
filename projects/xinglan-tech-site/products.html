@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>产品中心 - 星澜科技 XINGLAN TECH</title>
+  <meta name="description" content="星澜科技全栈产品矩阵：XL-LLM 大模型平台、XL-Cloud 容器引擎、XL-Data 数据中台、XL-Edge 边缘网关、XL-Compute 算力集群、XL-Shield 安全体系。（演示模板，内容虚构）">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="星澜科技 - 首页">
+        <svg class="logo-icon" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+          <defs><linearGradient id="lg-logo" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#2563eb"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+          <rect x="2" y="2" width="30" height="30" rx="8" fill="url(#lg-logo)"/>
+          <path d="M10 21.5 17 9l7 12.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="17" cy="23" r="2.2" fill="#fff"/>
+        </svg>
+        <span class="logo-text">星澜科技<em>XINGLAN TECH</em></span>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="about.html">关于我们</a>
+        <a href="products.html" class="active">产品中心</a>
+        <a href="solutions.html">解决方案</a>
+        <a href="cases.html">案例展示</a>
+        <a href="news.html">新闻资讯</a>
+        <a href="support.html">服务支持</a>
+        <a href="contact.html">联系我们</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm">免费试用</a>
+        <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero" data-word="PRODUCTS">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="面包屑">
+        <a href="index.html">首页</a><span class="sep">/</span><span class="current">产品中心</span>
+      </nav>
+      <h1>产品中心</h1>
+      <p class="lead">六大产品线，构建从算力底座到智能应用的完整技术栈。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- 分类筛选 -->
+      <div class="filter-tabs reveal" data-filter-tabs>
+        <button type="button" class="active" data-filter="all">全部产品</button>
+        <button type="button" data-filter="ai">AI 平台</button>
+        <button type="button" data-filter="cloud">云计算</button>
+        <button type="button" data-filter="data">数据智能</button>
+        <button type="button" data-filter="security">安全可信</button>
+      </div>
+
+      <div class="product-list">
+        <div class="card product-row reveal" data-category="ai">
+          <img class="row-bg" src="images/prod-llm.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="6" width="12" height="12" rx="2" stroke-width="1.8"/><rect x="10" y="10" width="4" height="4" rx="1" stroke-width="1.8"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div class="row-main">
+            <h3>XL-LLM 大模型平台<span class="card-tag">AI 平台</span></h3>
+            <p>企业级大模型训练、微调与推理一体化平台。内置 30+ 行业知识库模板，支持千亿参数模型私有化部署，推理成本较上代降低 55%。</p>
+          </div>
+          <div class="row-side"><a href="product-detail.html" class="card-link">了解详情 <span class="arrow">→</span></a></div>
+        </div>
+        <div class="card product-row reveal reveal-delay-1" data-category="cloud">
+          <img class="row-bg" src="images/prod-cloud.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M7 18a4.5 4.5 0 1 1 .42-8.98 5.5 5.5 0 0 1 10.7 1.62A3.75 3.75 0 0 1 17.5 18H7Z" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 21h6" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div class="row-main">
+            <h3>XL-Cloud 容器引擎<span class="card-tag">云计算</span></h3>
+            <p>基于 Kubernetes 的企业级容器云平台。秒级弹性伸缩、多集群统一治理，支撑单集群万级节点稳定运行。</p>
+          </div>
+          <div class="row-side"><a href="product-detail.html" class="card-link">了解详情 <span class="arrow">→</span></a></div>
+        </div>
+        <div class="card product-row reveal reveal-delay-2" data-category="data">
+          <img class="row-bg" src="images/prod-data.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="5.5" rx="7.5" ry="3" stroke-width="1.8"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6" stroke-width="1.8"/><path d="M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6" stroke-width="1.8"/></svg></div>
+          <div class="row-main">
+            <h3>XL-Data 数据中台<span class="card-tag">数据智能</span></h3>
+            <p>数据治理、实时计算与资产运营三位一体。内置 200+ 数据质量规则，让数据成为可度量、可复用的核心资产。</p>
+          </div>
+          <div class="row-side"><a href="product-detail.html" class="card-link">了解详情 <span class="arrow">→</span></a></div>
+        </div>
+        <div class="card product-row reveal" data-category="cloud">
+          <img class="row-bg" src="images/prod-edge.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.4" stroke-width="1.8"/><circle cx="19" cy="6" r="2.4" stroke-width="1.8"/><circle cx="19" cy="18" r="2.4" stroke-width="1.8"/><path d="M7.2 10.8 16.8 7.2M7.2 13.2l9.6 3.6" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div class="row-main">
+            <h3>XL-Edge 边缘网关<span class="card-tag">云计算</span></h3>
+            <p>边云协同的现场智能网关。支持 100+ 工业协议接入，端侧推理延迟低于 10ms，让算力延伸到业务最前线。</p>
+          </div>
+          <div class="row-side"><a href="product-detail.html" class="card-link">了解详情 <span class="arrow">→</span></a></div>
+        </div>
+        <div class="card product-row reveal reveal-delay-1" data-category="ai">
+          <img class="row-bg" src="images/prod-compute.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="12" rx="2" stroke-width="1.8"/><path d="M7 9h2M11 9h2M15 9h2M7 12.5h4M13 12.5h4" stroke-width="1.8" stroke-linecap="round"/><path d="M9 20h6M12 16v4" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+          <div class="row-main">
+            <h3>XL-Compute 算力集群<span class="card-tag">AI 平台</span></h3>
+            <p>大规模 GPU 算力池化与智能调度平台。异构算力统一纳管，按需弹性供给，集群利用率提升 60%。</p>
+          </div>
+          <div class="row-side"><a href="product-detail.html" class="card-link">了解详情 <span class="arrow">→</span></a></div>
+        </div>
+        <div class="card product-row reveal reveal-delay-2" data-category="security">
+          <img class="row-bg" src="images/prod-shield.jpg" alt="" aria-hidden="true" loading="lazy">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5c0 4.5 3 8.4 7 10 4-1.6 7-5.5 7-10V6l-7-3Z" stroke-width="1.8" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="row-main">
+            <h3>XL-Shield 安全体系<span class="card-tag">安全可信</span></h3>
+            <p>覆盖云、网、端、数的全栈安全防护体系。AI 驱动的威胁检测，平均响应时间小于 30 秒。</p>
+          </div>
+          <div class="row-side"><a href="product-detail.html" class="card-link">了解详情 <span class="arrow">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 选型指南 -->
+  <section class="section section--soft grid-bg">
+    <div class="container">
+      <div class="section-head reveal" data-ghost="HOW TO CHOOSE">
+        <span class="kicker">HOW TO CHOOSE</span>
+        <h2 class="section-title">三步完成技术选型</h2>
+      </div>
+      <div class="product-grid">
+        <div class="card reveal">
+          <span class="solution-num">01</span>
+          <h3 style="margin-top:14px">明确业务场景</h3>
+          <p>梳理核心业务诉求：是要构建 AI 应用、升级 IT 底座，还是盘活数据资产？场景决定产品组合。</p>
+        </div>
+        <div class="card reveal reveal-delay-1">
+          <span class="solution-num">02</span>
+          <h3 style="margin-top:14px">免费试用验证</h3>
+          <p>所有产品均提供 30 天免费试用与沙箱环境，真实数据验证效果后再做决策。</p>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <span class="solution-num">03</span>
+          <h3 style="margin-top:14px">专家护航落地</h3>
+          <p>解决方案专家一对一陪同，从架构设计到上线运维，全程保驾护航。</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px" class="reveal">
+        <a href="contact.html" class="btn btn-primary">获取选型建议 <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer" data-word="XINGLAN TECH">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" aria-label="星澜科技 - 首页">
+          <svg class="logo-icon" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+            <rect x="2" y="2" width="30" height="30" rx="8" fill="url(#lg-logo)"/>
+            <path d="M10 21.5 17 9l7 12.5" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="17" cy="23" r="2.2" fill="#fff"/>
+          </svg>
+          <span class="logo-text">星澜科技<em>XINGLAN TECH</em></span>
+        </a>
+        <p>星澜科技成立于 2016 年，是领先的 AI 与云计算基础设施服务商，致力于以智能计算驱动产业未来。</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品中心</h4>
+        <ul>
+          <li><a href="products.html">XL-LLM 大模型平台</a></li>
+          <li><a href="products.html">XL-Cloud 容器引擎</a></li>
+          <li><a href="products.html">XL-Data 数据中台</a></li>
+          <li><a href="products.html">XL-Compute 算力集群</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>解决方案</h4>
+        <ul>
+          <li><a href="solutions.html">智慧城市</a></li>
+          <li><a href="solutions.html">智能制造</a></li>
+          <li><a href="solutions.html">金融数字化</a></li>
+          <li><a href="solutions.html">智慧医疗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>关于我们</h4>
+        <ul>
+          <li><a href="about.html">公司简介</a></li>
+          <li><a href="cases.html">客户案例</a></li>
+          <li><a href="news.html">新闻资讯</a></li>
+          <li><a href="support.html">服务支持</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>联系我们</h4>
+        <ul class="footer-contact">
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke-width="1.8"/><circle cx="12" cy="10" r="2.6" stroke-width="1.8"/></svg><span>北京市海淀区星澜科技园 A 座 18 层</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke-width="1.8" stroke-linejoin="round"/></svg><span>400-800-9000</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.8"/><path d="m4 7 8 6 8-6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>contact@xinglan.tech</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© <span data-year>2026</span> 星澜科技（XINGLAN TECH）版权所有 · 京ICP备2026000000号-1</span>
+        <span class="fiction-note">本网站为演示模板，所有内容均为虚构</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

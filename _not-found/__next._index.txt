@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[459,[],""]
+3:I[823,[],""]
+:HL["/liu-zonghui-portfolio/_next/static/css/89497db0f2b72f88.css","style"]
+0:{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/liu-zonghui-portfolio/_next/static/css/89497db0f2b72f88.css","precedence":"next"}]],["$","html",null,{"lang":"zh-CN","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"KZdI34FVabPPO8xxcE9wQ"}

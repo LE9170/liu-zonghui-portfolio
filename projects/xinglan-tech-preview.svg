@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">星澜科技 AI 公司网站模板首页展示</title>
+  <desc id="desc">蓝白科技风格的企业官网首页，展示人工智能、云计算与数据平台产品。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/><stop offset="1" stop-color="#e8f4ff"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#146cff"/><stop offset="1" stop-color="#3ad5ff"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c2f69"/><stop offset="1" stop-color="#071933"/>
+    </linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#47d9ff" stop-opacity=".85"/><stop offset="1" stop-color="#2677ff" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="22" stdDeviation="28" flood-color="#075bc1" flood-opacity=".18"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="28"/></filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0V44" fill="none" stroke="#76bfff" stroke-opacity=".16"/></pattern>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1340" cy="210" r="360" fill="#cae9ff" opacity=".55"/>
+  <circle cx="1170" cy="560" r="310" fill="url(#glow)" opacity=".24"/>
+  <rect width="1600" height="1000" fill="url(#grid)" opacity=".4"/>
+
+  <g font-family="Inter, PingFang SC, Microsoft YaHei, Arial, sans-serif">
+    <g transform="translate(92 55)">
+      <rect width="48" height="48" rx="14" fill="url(#blue)"/>
+      <path d="M13 27 24 10l11 17-11 12Z" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+      <text x="65" y="24" font-size="25" font-weight="800" fill="#071b3a">星澜科技</text>
+      <text x="66" y="43" font-size="10" font-weight="700" letter-spacing="3" fill="#66809f">XINGLAN TECH</text>
+    </g>
+
+    <g fill="#49647f" font-size="15" font-weight="600">
+      <text x="620" y="85">首页</text><text x="700" y="85">关于我们</text><text x="805" y="85">产品中心</text>
+      <text x="910" y="85">解决方案</text><text x="1015" y="85">客户案例</text><text x="1120" y="85">资讯中心</text><text x="1225" y="85">服务支持</text>
+    </g>
+    <rect x="1360" y="54" width="145" height="48" rx="24" fill="#0c57d8"/>
+    <text x="1432" y="84" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">联系我们  →</text>
+
+    <g transform="translate(105 230)">
+      <rect width="186" height="34" rx="17" fill="#dcecff" stroke="#b6d6ff"/>
+      <circle cx="18" cy="17" r="5" fill="#1ec9f3"/><text x="34" y="22" font-size="12" font-weight="800" letter-spacing="2" fill="#1761b9">AI · CLOUD · DATA</text>
+      <text y="126" font-size="78" font-weight="800" letter-spacing="-5" fill="#082044">以智能计算</text>
+      <text y="218" font-size="78" font-weight="800" letter-spacing="-5" fill="url(#blue)">驱动产业未来</text>
+      <text y="284" font-size="19" fill="#5f7690">从大模型平台、云原生基础设施到智能数据中台，</text>
+      <text y="319" font-size="19" fill="#5f7690">让每一次计算都创造真实价值。</text>
+      <rect y="372" width="174" height="58" rx="29" fill="#0d5de5"/>
+      <text x="87" y="407" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">探索产品  →</text>
+      <rect x="192" y="372" width="174" height="58" rx="29" fill="#fff" stroke="#b7cce2"/>
+      <text x="279" y="407" text-anchor="middle" font-size="16" font-weight="700" fill="#183b66">查看方案</text>
+      <g transform="translate(0 492)">
+        <text y="28" font-size="33" font-weight="800" fill="#082044">11</text><text x="42" y="25" font-size="13" fill="#68809a">个完整页面</text>
+        <line x1="155" y1="0" x2="155" y2="40" stroke="#b7cce2"/>
+        <text x="190" y="28" font-size="28" font-weight="800" fill="#082044">6</text><text x="218" y="25" font-size="13" fill="#68809a">大产品模块</text>
+      </g>
+    </g>
+
+    <g transform="translate(820 205)" filter="url(#shadow)">
+      <rect width="665" height="525" rx="32" fill="url(#panel)"/>
+      <rect x="28" y="28" width="609" height="58" rx="17" fill="#123f7a" stroke="#62b8ff" stroke-opacity=".22"/>
+      <circle cx="57" cy="57" r="6" fill="#39d7ff"/><text x="75" y="62" font-size="14" font-weight="700" fill="#d9ecff">XL Intelligent Computing Console</text>
+      <text x="570" y="62" font-size="11" fill="#71bfff">LIVE</text>
+
+      <g transform="translate(28 110)">
+        <rect width="255" height="170" rx="20" fill="#0b2a55" stroke="#4a9dff" stroke-opacity=".25"/>
+        <text x="20" y="30" font-size="11" font-weight="700" fill="#78bfff">MODEL PERFORMANCE</text>
+        <path d="M20 130C50 115 74 135 105 90s61-18 91-60 40 14 47 3" fill="none" stroke="#42dfff" stroke-width="4" stroke-linecap="round"/>
+        <path d="M20 141C52 132 74 144 108 120s53-9 84-36 38 0 51-18" fill="none" stroke="#5c7cff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+        <g stroke="#6ba8e4" stroke-opacity=".18"><path d="M20 58H235M20 91H235M20 124H235"/></g>
+      </g>
+      <g transform="translate(301 110)">
+        <rect width="336" height="170" rx="20" fill="#0b2a55" stroke="#4a9dff" stroke-opacity=".25"/>
+        <text x="20" y="30" font-size="11" font-weight="700" fill="#78bfff">COMPUTE RESOURCES</text>
+        <circle cx="86" cy="95" r="48" fill="none" stroke="#1d4778" stroke-width="13"/>
+        <circle cx="86" cy="95" r="48" fill="none" stroke="#38d5ff" stroke-width="13" stroke-dasharray="220 82" transform="rotate(-90 86 95)"/>
+        <text x="86" y="101" text-anchor="middle" font-size="24" font-weight="800" fill="#fff">78%</text>
+        <text x="165" y="78" font-size="12" fill="#8fb4d8">GPU CLUSTER</text><text x="165" y="105" font-size="25" font-weight="800" fill="#fff">2,048</text><text x="165" y="129" font-size="11" fill="#42dfff">+12.6% THIS MONTH</text>
+      </g>
+
+      <g transform="translate(28 302)">
+        <rect width="609" height="195" rx="20" fill="#0b2a55" stroke="#4a9dff" stroke-opacity=".25"/>
+        <text x="20" y="31" font-size="11" font-weight="700" fill="#78bfff">PRODUCT MATRIX</text>
+        <g transform="translate(20 55)">
+          <g><rect width="174" height="112" rx="16" fill="#10396f"/><circle cx="32" cy="33" r="16" fill="#1b70dd"/><text x="60" y="30" font-size="13" font-weight="800" fill="#fff">XL-LLM</text><text x="60" y="50" font-size="10" fill="#8fb4d8">大模型平台</text><rect x="18" y="77" width="138" height="8" rx="4" fill="#16305a"/><rect x="18" y="77" width="112" height="8" rx="4" fill="#3bd8ff"/></g>
+          <g transform="translate(188)"><rect width="174" height="112" rx="16" fill="#10396f"/><circle cx="32" cy="33" r="16" fill="#7259eb"/><text x="60" y="30" font-size="13" font-weight="800" fill="#fff">XL-CLOUD</text><text x="60" y="50" font-size="10" fill="#8fb4d8">云原生引擎</text><rect x="18" y="77" width="138" height="8" rx="4" fill="#16305a"/><rect x="18" y="77" width="91" height="8" rx="4" fill="#7b74ff"/></g>
+          <g transform="translate(376)"><rect width="174" height="112" rx="16" fill="#10396f"/><circle cx="32" cy="33" r="16" fill="#14a8b9"/><text x="60" y="30" font-size="13" font-weight="800" fill="#fff">XL-DATA</text><text x="60" y="50" font-size="10" fill="#8fb4d8">智能数据中台</text><rect x="18" y="77" width="138" height="8" rx="4" fill="#16305a"/><rect x="18" y="77" width="124" height="8" rx="4" fill="#38d5c4"/></g>
+        </g>
+      </g>
+    </g>
+
+    <g transform="translate(103 865)">
+      <text font-size="12" font-weight="800" letter-spacing="3" fill="#2170cc">COMPLETE CORPORATE WEBSITE TEMPLATE</text>
+      <line y1="32" x2="1390" y2="32" stroke="#bdd4ea"/>
+      <text y="75" font-size="14" fill="#68809a">品牌视觉 · 产品矩阵 · 解决方案 · 客户案例 · 资讯中心 · 服务支持</text>
+      <text x="1390" y="75" text-anchor="end" font-size="13" font-weight="700" fill="#2170cc">DEMO TEMPLATE / 2026</text>
+    </g>
+  </g>
+</svg>

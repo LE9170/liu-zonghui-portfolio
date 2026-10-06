@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>常见问题｜一搜百应GEO</title>
+    <meta
+      name="description"
+      content="关于GEO服务、技术与合作的高频问题解答，涵盖基础认知、合作流程、场景应用与方法论，帮助您全面了解生成引擎优化。"
+    />
+    <meta
+      name="keywords"
+      content="GEO常见问题,生成引擎优化FAQ,AI营销服务,合作流程,场景应用"
+    />
+    <link rel="canonical" href="https://www.yisoubaiying.com/faq/index.html" />
+    <link rel="stylesheet" href="../assets/css/style.css?v=4" />
+    <style>
+      .btn,.btn-primary,.btn-secondary,.btn-white,.btn-light{position:relative;overflow:hidden;z-index:1;background:#1B5FA0;color:#fff;border:none;transition:transform 0.3s ease,box-shadow 0.3s ease,color 0.4s ease}
+      .btn::after,.btn-primary::after,.btn-secondary::after,.btn-white::after,.btn-light::after{content:"";position:absolute;left:0;right:0;bottom:0;pointer-events:none;height:100%;background:linear-gradient(0deg,#FCE0EA 0%,#F4B8CC 50%,#E898B0 100%);clip-path:polygon(0% 0%,0% 100%,8% 94%,18% 100%,28% 90%,38% 98%,48% 92%,58% 100%,68% 88%,78% 96%,88% 91%,100% 100%,100% 0%);transition:transform 0.55s;transform:translateY(100%)}
+      .btn:hover::after,.btn-primary:hover::after,.btn-secondary:hover::after,.btn-white:hover::after,.btn-light:hover::after{transform:translateY(0)}
+      .btn::before,.btn-primary::before,.btn-secondary::before,.btn-white::before,.btn-light::before{content:"";position:absolute;left:0;right:0;bottom:0;pointer-events:none;height:100%;background:linear-gradient(0deg,#F0C0D4 0%,#E090A8 50%,#D07090 100%);clip-path:polygon(0% 0%,0% 100%,12% 92%,22% 100%,35% 88%,45% 97%,55% 93%,65% 100%,75% 87%,85% 98%,95% 90%,100% 100%,100% 0%);transition:transform 0.7s;transform:translateY(100%)}
+      .btn:hover::before,.btn-primary:hover::before,.btn-secondary:hover::before,.btn-white:hover::before,.btn-light:hover::before{transform:translateY(0)}
+      .btn:hover,.btn-primary:hover,.btn-secondary:hover,.btn-white:hover,.btn-light:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,140,160,0.35);color:#0B2E59}
+      .btn span,.btn-primary span,.btn-secondary span,.btn-white span,.btn-light span{position:relative;z-index:2}
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+  </head>
+  <body class="pg-teal page-faq" x-data="siteApp">
+    <!-- ═══════════ Header / Navigation ═══════════ -->
+    <header class="header">
+      <nav class="container nav" aria-label="主导航">
+        <a class="logo" href="../index.html"
+          ><img src="https://www.tk163.com/wp-content/uploads/2026/03/cropped-logo.png" alt="一搜百应" class="logo-icon" /></a
+        >
+        <button
+          class="mobile btn-secondary"
+          type="button"
+          @click="menu=!menu"
+          aria-label="打开导航"
+        >
+          菜单
+        </button>
+        <div class="navlinks" :class="{open:menu}">
+          <a href="../index.html">首页</a>
+          <a href="../products/index.html">产品中心</a>
+          <a href="../solutions/index.html">解决方案</a>
+          <a href="../cases/index.html">客户案例</a>
+          <a href="../news/index.html">新闻与知识</a>
+          <a aria-current="page" href="../faq/index.html">FAQ中心</a>
+          <a href="../about.html">关于我们</a>
+          <a class="btn btn-white" href="../contact.html"><span>立即咨询</span></a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+      <header class="page-head pg-teal">
+        <div class="container">
+          <h1>常见问题</h1>
+          <p class="page-subtitle">关于GEO服务、技术与合作的高频问题解答 —— 每个问题都提供直接答案和详细解释，帮助您快速了解生成引擎优化。</p>
+        </div>
+      </header>
+
+      <section class="section bg-teal">
+        <div class="container" x-data="filterableList">
+          <div class="filters">
+            <button :class="{active:filter==='all'}" @click="filter='all'">全部</button>
+            <button :class="{active:filter==='basics'}" @click="filter='basics'">基础认知</button>
+            <button :class="{active:filter==='cooperation'}" @click="filter='cooperation'">合作流程</button>
+            <button :class="{active:filter==='scenario'}" @click="filter='scenario'">场景应用</button>
+            <button :class="{active:filter==='methodology'}" @click="filter='methodology'">方法论</button>
+          </div>
+          <div class="faq">
+            <details x-show="filter==='all'||filter==='cooperation'">
+              <summary>不同版本（基础版/标准版/专业版）分别适合什么样的客户？</summary>
+            </details>
+            <details x-show="filter==='all'||filter==='cooperation'">
+              <summary>为什么标准版是你们最推荐的版本？它的性价比体现在哪？</summary>
+              <p>标准版在覆盖广度（5个自选大模型）和内容深度（10篇核心文章+权威媒体发布）上达到平衡，且第2季度加赠行业白皮书，是目前大多数成长型企业的首选。</p>
+            </details>
+            <details x-show="filter==='all'||filter==='cooperation'">
+              <summary>既然按季度收费，如果前两周都在部署没效果，我不是亏了吗？</summary>
+              <p>完全不会。我们采用"效果付费/后起算"模式：项目启动后有1-2周免费部署期，只有当约定的优化效果真实出现后，才开始计算3个月的深度服务周期。</p>
+            </details>
+            <details x-show="filter==='all'||filter==='basics'">
+              <summary>企业规模对开展GEO优化有具体的门槛或要求吗？</summary>
+              <p>员工20~80人、年营收100万至5000万之间的企业最为适配，因为这类企业决策快且对线索质量敏感。但GEO不限规模，小微企业也可以从基础版起步。</p>
+            </details>
+            <details x-show="filter==='all'||filter==='scenario'">
+              <summary>能否用一个最简单的例子说明GEO的日常应用场景？</summary>
+              <p>一位创业者问豆包"注册商标的流程和费用是怎样的？"如果一家财税公司做了GEO，AI就可能引用其发布的《商标注册全流程指南》并推荐该公司，一次精准获客就这样完成。</p>
+            </details>
+            <details x-show="filter==='all'||filter==='methodology'">
+              <summary>六维链路闭环方法论最终能为企业交付什么样的长期价值？</summary>
+              <p>它交付的是一套AI时代的"品牌认知基础设施"。通过系统性建模、训练与迭代，品牌在AI世界中拥有机器可理解的数字身份，这是可长期复用的数字化战略资产。</p>
+            </details>
+            <details x-show="filter==='all'||filter==='methodology'">
+              <summary>GEO如何处理负面信息？效果如何？</summary>
+              <p>GEO通过四级响应机制处理负面：一级标准化回复、二级负面稀释策略、三级专项小组介入、四级预防监测体系。某医美机构通过GEO负面舆情压制率超85%，搜索排名回升至TOP2。</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <strong>一搜百应GEO</strong>
+            <p>关于GEO服务、技术与合作的高频问题，一搜百应为您一一解答。</p>
+          </div>
+          <div>
+            <strong>相关栏目</strong>
+            <a href="../products/index.html">产品中心</a>
+            <a href="../solutions/index.html">解决方案</a>
+          </div>
+          <div>
+            <strong>继续浏览</strong>
+            <a href="../news/index.html">新闻与知识</a>
+            <a href="../cases/index.html">客户案例</a>
+          </div>
+          <div>
+            <strong>联系</strong>
+            <a href="../contact.html">联系我们</a>
+          </div>
+        </div>
+        <div class="footer-bottom">© 2026 一搜百应GEO</div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

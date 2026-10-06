@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>一搜百应是一家全链路AI营销公司|领先的AI营销服务商</title>
+    <meta
+      name="description"
+      content="探索AI营销的重要性，提升品牌在AI大模型中的能见度，带来更精准的客户群体。一搜百应是一家全链路AI营销公司，是最早一批AI营销专业服务商，专注为企业提供品牌曝光、权威背书、精准获客一体化解决方案！"
+    />
+    <meta
+      name="keywords"
+      content="GEO,生成式引擎优化,AI搜索优化,企业网站建设,FAQ知识库,品牌知识库"
+    />
+    <link rel="canonical" href="https://www.yisoubaiying.com/index.html" />
+    <link rel="stylesheet" href="assets/css/style.css?v=5" />
+    <style>
+      .btn {
+        position: relative; overflow: hidden; z-index: 1;
+        background: #1B5FA0; color: #fff; border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.4s ease;
+      }
+      .btn::after {
+        content: "";
+        position: absolute; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
+        height: 100%;
+        background: linear-gradient(0deg, #FCE0EA 0%, #F4B8CC 50%, #E898B0 100%);
+        clip-path: polygon(0% 0%,0% 100%,8% 94%,18% 100%,28% 90%,38% 98%,48% 92%,58% 100%,68% 88%,78% 96%,88% 91%,100% 100%,100% 0%);
+        transition: transform 0.55s cubic-bezier(0.25,0.05,0.12,0.97);
+        transform: translateY(100%);
+      }
+      .btn:hover::after { transform: translateY(0); }
+      .btn::before {
+        content: "";
+        position: absolute; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
+        height: 100%;
+        background: linear-gradient(0deg, #F0C0D4 0%, #E090A8 50%, #D07090 100%);
+        clip-path: polygon(0% 0%,0% 100%,12% 92%,22% 100%,35% 88%,45% 97%,55% 93%,65% 100%,75% 87%,85% 98%,95% 90%,100% 100%,100% 0%);
+        transition: transform 0.7s cubic-bezier(0.25,0.05,0.12,0.97);
+        transform: translateY(100%);
+      }
+      .btn:hover::before { transform: translateY(0); }
+      .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(220,140,160,0.35); color: #0B2E59; }
+      .btn span { position: relative; z-index: 2; }
+    </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/animejs@3/lib/anime.min.js"></script>
+  </head>
+  <body class="index-page" x-data="siteApp">
+    <!-- ═══════════ Header / Navigation ═══════════ -->
+    <header class="header">
+      <nav class="container nav" aria-label="主导航">
+        <a class="logo" href="index.html"
+          ><img src="https://www.tk163.com/wp-content/uploads/2026/03/cropped-logo.png" alt="一搜百应" class="logo-icon" /></a
+        >
+        <button
+          class="mobile btn-secondary"
+          type="button"
+          @click="menu=!menu"
+          aria-label="打开导航"
+        >
+          菜单
+        </button>
+        <div class="navlinks" :class="{open:menu}">
+          <a aria-current="page" href="index.html">首页</a>
+          <a href="products/index.html">产品中心</a>
+          <a href="solutions/index.html">解决方案</a>
+          <a href="cases/index.html">客户案例</a>
+          <a href="news/index.html">新闻与知识</a>
+          <a href="faq/index.html">FAQ中心</a>
+          <a href="about.html">关于我们</a>
+          <a class="btn btn-white" href="contact.html"><span>立即咨询</span></a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="geo-top-ball" aria-hidden="true">GEO</div>
+    <a href="https://www.tk163.com/" target="_blank" rel="noopener" class="geo-top-ball-reverse" aria-label="访问 tk163.com">一搜<br>百应</a>
+    <main>
+      <div class="top-search-bar">
+        <form class="top-search-form" onsubmit="return false;">
+          <input type="search" placeholder="搜索 GEO 相关内容…" aria-label="站内搜索" />
+          <button type="submit" aria-label="搜索">🔍</button>
+        </form>
+      </div>
+      <!-- ═══════════ 1. Hero 首屏 ═══════════ -->
+      <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container">
+          <h1 class="hero-title reveal">搜索决定影响力，让品牌一搜百应</h1>
+          <p class="hero-tagline reveal">在AI时代让客户一问就有你，一查就信你，一看就找你</p>
+          <div class="hero-grid">
+            <div class="hero-copy reveal">
+              <span class="eyebrow">全链路AI营销服务</span>
+              <p class="lead">
+                深圳一搜百应信息技术有限公司成立于2010年，是国内领先的生成引擎优化（GEO）服务商，致力于帮助企业抢占AI搜索时代的流量入口。
+              </p>
+              <p class="hero-note">
+                从品牌诊断、内容建设到持续监测，一套方法把品牌信息讲清楚、传出去、持续优化。深度适配DeepSeek、豆包、文心一言、通义千问、KIMI等主流AI平台。
+              </p>
+              <div class="button-row">
+                <a class="btn btn-primary" href="contact.html"><span>GEO诊断检测</span></a>
+                <a class="btn btn-secondary" href="solutions/index.html"><span>立即咨询</span></a>
+              </div>
+              <div class="hero-flow-mini reveal">
+                <h3>GEO 全链路服务</h3>
+                <div class="geo-flow-mini">
+                  <div class="geo-flow-step"><span class="step-num">1</span> 品牌GEO体检</div>
+                  <div class="geo-flow-step"><span class="step-num">2</span> 场景问题构建</div>
+                  <div class="geo-flow-step"><span class="step-num">3</span> 语义建模</div>
+                  <div class="geo-flow-step"><span class="step-num">4</span> AI训练与内容分发</div>
+                  <div class="geo-flow-step"><span class="step-num">5</span> 效果监测与优化</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-glass reveal-scale">
+              <strong>8+</strong>
+              <span>AI平台覆盖</span>
+            </div>
+            <div class="stat-glass reveal-scale">
+              <strong>300%</strong>
+              <span>咨询转化率提升</span>
+            </div>
+            <div class="stat-glass reveal-scale">
+              <strong>60%</strong>
+              <span>线索精准度提升</span>
+            </div>
+            <div class="stat-glass reveal-scale">
+              <strong>50%</strong>
+              <span>获客成本降低</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ 2. 为什么企业需要 GEO ═══════════ -->
+      <section class="section rainbow-orange blob-section blob-tr">
+        <div class="container">
+          <div class="section-head">
+            <h2>别让品牌在 AI 时代消失</h2>
+            <p class="section-subtitle">
+              GEO（生成式搜索优化）是针对DeepSeek、豆包、文心、千问、元宝、KIMI、智谱、纳米等AI平台，提升品牌被提及与被引用的营销策略。
+            </p>
+          </div>
+          <div class="grid">
+            <article class="card-why reveal">
+              <div class="why-icon">🔍</div>
+              <div class="why-text">
+                <h3>搜索点击被 AI 回答拦截，流量下滑</h3>
+                <p>
+                  你是不是也遇到：用户主动搜索关键词，但答案被 AI 直接生成拦截，点击结果进入网站的比例持续下降？传统搜索时代 20-50% 的流量正在被零点击趋势蚕食。GEO 透过优化网站技术结构、丰富内容品质、提高全域能见度三大方向，让 AI 更容易读懂你是谁、你提供什么产品服务、为什么要推荐你，并在回答中引用你的内容或推荐你的产品服务及网站。
+                </p>
+              </div>
+            </article>
+            <article class="card-why reveal">
+              <div class="why-icon">⚠️</div>
+              <div class="why-text">
+                <h3>行业存在虚假软文、恶意投喂 AI 的乱象</h3>
+                <p>
+                  行业存在批量虚假软文、恶意投喂 AI 的"投毒"乱象。一搜百应——做负责任的"品牌翻译官"，强调真实信息 + 结构化合规，拒绝虚假内容，以真实信息做长期合规 GEO。我们坚守四大自律准则：真实性（拒绝虚构内容）、透明性（服务流程透明报告数据可查证）、合规性（严格遵守各平台规则拒绝黑帽操作）、可持续性（追求长期效果而非短期投机）。选择正规服务商，警惕行业违规操作。
+                </p>
+              </div>
+            </article>
+            <article class="card-why reveal">
+              <div class="why-icon">🎯</div>
+              <div class="why-text">
+                <h3>被引用 = 被推荐，GEO 品牌优化</h3>
+                <p>
+                  AI 搜索时代，AI 直接生成答案，被引用就等于被推荐。当 30-40% 的交易由 AI 代理完成，GEO 成为品牌新的增长引擎。从品牌诊断、场景问题构建到效果监测，我们帮你重建一条 AI 时代的营销漏斗与客户体验新旅程，全链路提升品牌 AI 可见度，让品牌内容在 AI 回答中被优先引用、精准触达目标客户。
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ 3. GEO 3.0 服务路径 ═══════════ -->
+      <section class="section rainbow-yellow">
+        <div class="container">
+          <div class="section-head">
+            <h2>一搜百应GEO解决方案</h2>
+            <p class="section-subtitle">
+              全方位 AI 搜索优化解决方案，助力品牌在生成式搜索时代抢占先机。四步服务流程，从诊断到优化全覆盖。
+            </p>
+          </div>
+
+          <div class="geo-row">
+            <div class="geo-flow-card" tabindex="0">
+              <img src="https://picsum.photos/id/48/900/680" alt="品牌GEO体检" loading="lazy" width="900" height="680" />
+              <div class="geo-flow-text">
+                <span class="step-num">01</span>
+                <strong>品牌GEO体检</strong>
+                <span class="static-desc">智能监测品牌在AI引擎中的现状与竞争情况，多引擎品牌曝光与覆盖率体检</span>
+              </div>
+              <div class="geo-flow-detail">
+                <p>多引擎品牌曝光与覆盖率体检，品牌与核心竞品 GEO 体征对比，识别重点机会场景与风险盲区。</p>
+              </div>
+            </div>
+
+            <div class="geo-flow-card" tabindex="0">
+              <img src="https://picsum.photos/id/1/900/680" alt="场景问题构建" loading="lazy" width="900" height="680" />
+              <div class="geo-flow-text">
+                <span class="step-num">02</span>
+                <strong>场景问题构建</strong>
+                <span class="static-desc">围绕真实业务场景构建AI高价值问题矩阵，关键词与长尾问法自动聚类</span>
+              </div>
+              <div class="geo-flow-detail">
+                <p>围绕真实业务场景梳理问题话题，关键词与长尾问法自动聚类管理，AI 挖掘高价值长尾与潜在需求。</p>
+              </div>
+            </div>
+
+            <div class="geo-flow-card" tabindex="0">
+              <img src="https://picsum.photos/id/201/900/680" alt="AI训练与内容分发" loading="lazy" width="900" height="680" />
+              <div class="geo-flow-text">
+                <span class="step-num">03</span>
+                <strong>AI训练与内容分发</strong>
+                <span class="static-desc">内容生产内嵌GEO友好表达，RPA矩阵一键分发全平台，官网技术改造</span>
+              </div>
+              <div class="geo-flow-detail">
+                <p>内容生产内嵌GEO友好表达与结构，RPA矩阵一键分发全平台，品牌官网技术层面改造。</p>
+              </div>
+            </div>
+
+            <div class="geo-flow-card" tabindex="0">
+              <img src="https://picsum.photos/id/60/900/680" alt="效果监测与迭代优化" loading="lazy" width="900" height="680" />
+              <div class="geo-flow-text">
+                <span class="step-num">04</span>
+                <strong>效果监测与迭代优化</strong>
+                <span class="static-desc">定期生成AI搜索可见度与引用报告，效果对比与策略闭环，季度迭代</span>
+              </div>
+              <div class="geo-flow-detail">
+                <p>定期生成 AI 搜索可见度与引用报告，效果对比与策略调整建议闭环，季度内容迭代。</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ═══════════ 4. 核心服务 ═══════════ -->
+      <section class="section rainbow-green blob-section blob-bl">
+        <div class="container">
+          <div class="section-head">
+            <h2>专业服务流程</h2>
+            <p class="section-subtitle">
+              四步标准化服务流程，确保服务透明高效 —— 从需求沟通到持续监测，每一步都有明确交付。
+            </p>
+          </div>
+          <div class="service-carousel">
+            <div class="service-track" id="serviceTrack">
+              <article class="service-card">
+                <img src="https://picsum.photos/id/0/800/500" alt="需求沟通与品牌GEO体检" loading="lazy" width="800" height="500" />
+                <div class="service-card-body">
+                  <span class="svc-tag">步骤1</span>
+                  <h3>需求沟通与品牌GEO体检</h3>
+                  <p>深入了解企业业务现状、AI搜索现状及优化目标，完成品牌在各大AI引擎中的曝光与覆盖率体检，约1-3个工作日。</p>
+                </div>
+              </article>
+              <article class="service-card">
+                <img src="https://picsum.photos/id/180/800/500" alt="场景问题优化确认" loading="lazy" width="800" height="500" />
+                <div class="service-card-body">
+                  <span class="svc-tag">步骤2</span>
+                  <h3>场景问题优化确认</h3>
+                  <p>围绕真实业务场景，构建并确认AI可能被问及的高价值问题矩阵（话题库），约2-3个工作日。</p>
+                </div>
+              </article>
+              <article class="service-card">
+                <img src="https://picsum.photos/id/60/800/500" alt="知识图谱搭建与AI训练" loading="lazy" width="800" height="500" />
+                <div class="service-card-body">
+                  <span class="svc-tag">步骤3-4</span>
+                  <h3>知识图谱搭建与AI训练 + 持续监测迭代</h3>
+                  <p>完成品牌语义建模与知识库搭建，将策略转化为AI能理解、愿引用的高质量内容与信源网络。通过数据驱动透明呈现效果，以季度为周期持续优化。</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ 5. 行业解决方案 ═══════════ -->
+      <section class="section rainbow-cyan">
+        <div class="container">
+          <div class="section-head">
+            <h2>成功案例行业覆盖</h2>
+            <p class="section-subtitle">
+              不同行业 GEO 落地的重点各不相同 —— 一搜百应已服务制造、电子、消费品、教育、医疗等多个行业的10000+企业客户。
+            </p>
+          </div>
+
+          <div class="solution-row reveal">
+            <img
+              src="https://picsum.photos/id/180/800/500"
+              alt="LED线路板制造企业 GEO 方案：产品参数模板与行业 FAQ 建设"
+              loading="lazy"
+              width="800"
+              height="500"
+            />
+            <div class="solution-text">
+              <div class="sol-icon">🏭</div>
+              <h3>LED线路板制造</h3>
+              <p>
+                产品技术参数专业且复杂，怎样让 AI 准确理解并推荐？我们帮助制造企业将产品规格、技术参数和应用场景整理成结构化内容，让 AI 在客户提问时精准引用关键信息，降低沟通成本。
+              </p>
+              <a href="solutions/index.html" class="btn-text">了解制造行业方案 →</a>
+            </div>
+          </div>
+
+          <div class="solution-row reverse reveal">
+            <img
+              src="https://picsum.photos/id/1/800/500"
+              alt="消费电子/音频产品企业 GEO 方案：品牌差异化与场景化知识体系"
+              loading="lazy"
+              width="800"
+              height="500"
+            />
+            <div class="solution-text">
+              <div class="sol-icon">🎧</div>
+              <h3>消费电子与音频产品</h3>
+              <p>
+                产品同质化严重，怎样在 AI 推荐中脱颖而出？围绕品牌差异化、音质参数、使用场景和用户评价建立知识体系，让 AI 在对比推荐中准确呈现产品优势，提升购买转化。
+              </p>
+              <a href="solutions/index.html" class="btn-text">了解电子行业方案 →</a>
+            </div>
+          </div>
+
+          <div class="solution-row reveal">
+            <img
+              src="https://picsum.photos/id/20/800/500"
+              alt="高端婚纱摄影企业 GEO 方案：本地服务品牌信息与评价体系统一管理"
+              loading="lazy"
+              width="800"
+              height="500"
+            />
+            <div class="solution-text">
+              <div class="sol-icon">📸</div>
+              <h3>高端婚纱摄影</h3>
+              <p>
+                本地服务依赖口碑传播，怎样让 AI 在"推荐/哪个好"时优先展示？统一门店、作品、客评和资质信息，让品牌在 AI 本地推荐中成为首选，提升到店咨询转化率。
+              </p>
+              <a href="solutions/index.html" class="btn-text">了解本地服务方案 →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ 6. 企业实力与案例 ═══════════ -->
+      <section class="section rainbow-blue blob-section blob-br">
+        <div class="container">
+          <div class="section-head">
+            <h2>为什么选择一搜百应GEO</h2>
+            <p class="section-subtitle">
+              帮品牌在AI搜索时代抢占精准流量、权威推荐、低成本获客的先机。深耕数字营销领域十余年，服务超过10000+企业客户。
+            </p>
+          </div>
+
+          <div class="strength-layout">
+            <div>
+              <h3 style="margin-bottom:20px;">核心数据与技术沉淀</h3>
+              <div class="strength-stats">
+                <div class="strength-stat-card reveal">
+                  <strong>15+ 年</strong>
+                  <span>数字化搜索能力</span>
+                </div>
+                <div class="strength-stat-card reveal">
+                  <strong>30+ 项</strong>
+                  <span>自主知识产权</span>
+                </div>
+                <div class="strength-stat-card reveal">
+                  <strong>10万+</strong>
+                  <span>全域媒体矩阵</span>
+                </div>
+                <div class="strength-stat-card reveal">
+                  <strong>700%</strong>
+                  <span>内容分发效率提升</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="strength-deliverables reveal">
+              <h3>GEO 服务标准交付清单</h3>
+              <ul>
+                <li>品牌 AI 可见度诊断报告（含问题清单与优先级）</li>
+                <li>场景问题矩阵（围绕真实业务场景的高价值话题库）</li>
+                <li>品牌知识库建设（语义建模 + 知识图谱 + 文章矩阵）</li>
+                <li>核心页面内容重构（符合 AI 可读标准的文案与标签）</li>
+                <li>上线后月度监测报告（品牌引用率与推荐变化跟踪）</li>
+                <li>季度内容迭代建议（基于搜索趋势与 AI 平台规则变化）</li>
+              </ul>
+              <p class="strength-note">
+                ※ 案例数据与客户信息上线前需由企业确认。当前展示为服务方法与交付物说明，确保信息真实可核验。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════ 7. FAQ + 咨询 CTA ═══════════ -->
+      <section class="section rainbow-violet">
+        <div class="container">
+          <div class="section-head">
+            <h2>常见问题</h2>
+            <p class="section-subtitle">
+              关于 GEO，企业最常问的问题 —— 把真实客户问题沉淀为标准问答，也帮助 AI 在回答时引用你的专业内容。
+            </p>
+          </div>
+
+          <div class="split">
+            <div class="reveal">
+              <div class="faq">
+                <details open>
+                  <summary>已经做了 SEO，还需要做 GEO 吗？</summary>
+                  <p>SEO 帮助页面在搜索结果中排名靠前，GEO 确保品牌内容在 AI 问答和生成式搜索中被准确理解和引用。传统搜索时代 20-50% 的流量正在流失，两者互补而非替代。</p>
+                </details>
+                <details>
+                  <summary>GEO 效果需要多久才能看到？</summary>
+                  <p>品牌GEO体检约1-3个工作日完成，场景问题构建2-3个工作日。首轮内容升级后，一般 3-6 个月可见品牌在 AI 平台中被引用和推荐的稳定提升。</p>
+                </details>
+                <details>
+                  <summary>你们覆盖哪些 AI 平台？</summary>
+                  <p>深度适配 DeepSeek、豆包、文心一言、通义千问、KIMI、ChatGPT、Gemini 等 8+ 主流 AI 平台，一次训练可同步覆盖所有目标平台。</p>
+                </details>
+                <details>
+                  <summary>如何衡量 GEO 的效果？</summary>
+                  <p>核心指标：品牌在 AI 回答中被提及的频率、信息准确率、引用来源是否指向官网、咨询转化率变化。我们提供月度监测报告，多引擎结果第三方截图留痕备查。</p>
+                </details>
+                <details>
+                  <summary>GEO 优化需要改动网站吗？</summary>
+                  <p>视体检结果而定，可能涉及技术结构优化、内容重构或标签调整，我们提供无侵入式方案。</p>
+                </details>
+                <details>
+                  <summary>小企业适合做 GEO 吗？</summary>
+                  <p>适合。GEO 是性价比最高的 AI 时代营销方式，小企业可以通过精准的长尾场景获得高转化。</p>
+                </details>
+                <details>
+                  <summary>GEO 和传统 SEO 可以同时做吗？</summary>
+                  <p>可以且建议同时进行，两者互补。SEO 保障传统搜索排名，GEO 抢占 AI 推荐流量。</p>
+                </details>
+              </div>
+              <div style="margin-top:20px;">
+                <a href="faq/index.html" class="btn-text">查看完整 FAQ →</a>
+              </div>
+            </div>
+
+            <div class="cta-panel cta-enhanced reveal-scale">
+              <div>
+                <h2>准备好让 AI 推荐你的品牌了吗？</h2>
+                <p>
+                  联系我们，为您量身评估 GEO 方案，助力品牌在生成式搜索时代被看见、被引用。所有服务 KPI 考核不达标退款，1-2周免费部署体验。
+                </p>
+                <div class="contact-methods">
+                  <strong>联系方式</strong><br />
+                  电话：13691691391<br />
+                  微信：请通过联系页面获取<br />
+                  邮箱：sunbo@esoboy.com
+                </div>
+              </div>
+              <div class="cta-panel-right">
+                <a class="btn btn-light" href="contact.html"><span>预约沟通与咨询</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ═══════════ Footer ═══════════ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <strong>一搜百应GEO</strong>
+            <p>
+              深圳一搜百应信息技术有限公司，成立于 2010 年，是国内领先的生成引擎优化（GEO）服务商，致力于帮助企业抢占AI搜索时代的流量入口。立足深圳，服务全国。
+            </p>
+          </div>
+          <div>
+            <strong>核心栏目</strong>
+            <a href="products/index.html">产品中心</a>
+            <a href="solutions/index.html">解决方案</a>
+            <a href="cases/index.html">客户案例</a>
+          </div>
+          <div>
+            <strong>内容中心</strong>
+            <a href="news/index.html">新闻与知识</a>
+            <a href="faq/index.html">FAQ中心</a>
+            <a href="about.html">关于我们</a>
+          </div>
+          <div>
+            <strong>联系信息</strong>
+            <a href="contact.html">联系我们</a>
+            <p>电话：13691691391<br />微信：请通过联系页面获取<br />邮箱：sunbo@esoboy.com<br />地址：深圳市宝安区前海科兴科学园5栋707</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2026 一搜百应. 版权所有 粤ICP备11000511号
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══════════ Structured Data ═══════════ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "一搜百应GEO",
+        "alternateName": "一搜百应",
+        "description": "深圳一搜百应信息技术有限公司，成立于2010年，是国内领先的生成引擎优化（GEO）服务商，致力于帮助企业抢占AI搜索时代的流量入口。",
+        "url": "https://www.yisoubaiying.com",
+        "foundingDate": "2010",
+        "address": { "@type": "PostalAddress", "addressCountry": "CN", "addressLocality": "深圳" },
+        "email": "sunbo@esoboy.com",
+        "telephone": "13691691391"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "一搜百应",
+        "url": "https://www.yisoubaiying.com",
+        "description": "一搜百应是一家全链路AI营销公司，专注为企业提供品牌曝光、权威背书、精准获客一体化解决方案"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "已经做了SEO，还需要做GEO吗？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SEO帮助页面在搜索结果中排名靠前，GEO确保品牌内容在AI问答和生成式搜索中被准确理解和引用。传统搜索时代20-50%的流量正在流失，两者互补而非替代。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "GEO效果需要多久才能看到？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "品牌GEO体检约1-3个工作日完成，场景问题构建2-3个工作日。首轮内容升级后，一般3-6个月可见品牌在AI平台中被引用和推荐的稳定提升。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "你们覆盖哪些AI平台？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "深度适配DeepSeek、豆包、文心一言、通义千问、KIMI、ChatGPT、Gemini等8+主流AI平台，一次训练可同步覆盖所有目标平台。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "如何衡量GEO的效果？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "核心指标：品牌在AI回答中被提及的频率、信息准确率、引用来源是否指向官网、咨询转化率变化。我们提供月度监测报告，多引擎结果第三方截图留痕备查。"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <button class="back-to-top" id="backToTop" aria-label="返回顶部" title="返回顶部">↑</button>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="assets/js/hero-bg-grid.js"></script>
+    <script src="assets/js/hero-3d-robot.js"></script>
+    <script src="assets/js/bg-grid-particles.js"></script>
+    <script src="assets/js/card-why-3d-icons.js?v=4"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // 服务流程卡片无限滚动
+      (function(){
+        var track = document.getElementById('serviceTrack');
+        if (!track) return;
+        var cards = track.innerHTML;
+        // 克隆两份实现无缝循环
+        track.innerHTML = cards + cards + cards;
+      })();
+
+    </script>
+  </body>
+</html>

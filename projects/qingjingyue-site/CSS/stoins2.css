@@ -1,0 +1,54 @@
+.stoil2 .biaoti2 {
+    background-image: url('../images/stoins2/sector.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 200px;
+}
+
+.stoil2 .fazhantu {
+    display: flex;
+    justify-content: center;
+}
+
+.stoil2 .fazhantu .fazhanshi {
+    background-image: url('../images/stoins2/fazhanshiqi.png');
+    background-repeat: no-repeat;
+    width: 500px;
+    height: 500px;
+    margin: 65px 100px;
+}
+
+.stoil2 .fazhantu .wenzikuang {
+    width: 930px;
+    height: 600px;
+    margin: auto auto;
+}
+
+.stoil2 .fazhantu .wenzikuang .toubuwenzi {
+    background-image: url('../images/stoins2/wenzikuang.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100px;
+}
+
+.stoil2 .fazhantu .wenzikuang ul {
+    margin: 0 auto;
+}
+
+.stoil2 .fazhantu .wenzikuang ul li {
+    display: block;
+    color: rgb(27, 86, 106);
+    font-weight: 700;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.stoil2 .fazhantu .wenzikuang ul li a {
+    color: rgb(27, 86, 106);
+}
+
+.stoil2 .fazhantu .wenzikuang ul li a:hover {
+    color: rgb(27, 86, 106);
+    text-decoration: underline;
+    text-decoration-color: rgb(27, 86, 106);
+}
